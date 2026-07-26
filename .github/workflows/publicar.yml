@@ -1,0 +1,92 @@
+# ============================================================
+#  Publicar en GitHub Pages
+#
+#  Compila el sitio y lo publica en:
+#    https://aleramirezpo.github.io/micliente/
+#
+#  Se ejecuta solo en cada cambio de la rama principal.
+#
+#  Nota sobre la subcarpeta: en GitHub Pages el sitio no vive en la
+#  raíz del dominio sino en /micliente/. Por eso se compila con
+#  NEXT_PUBLIC_BASE_PATH, o los estilos y scripts no se encontrarían.
+# ============================================================
+
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Permite lanzarlo a mano desde la pestaña Actions
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si llegan dos cambios seguidos, se publica solo el último.
+# No se cancela una publicación en curso para no dejar el sitio a medias.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  compilar:
+    name: Compilar el sitio
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Instalar dependencias
+        working-directory: web
+        run: npm ci
+
+      - name: Compilar
+        working-directory: web
+        env:
+          NEXT_PUBLIC_BASE_PATH: /micliente
+          NEXT_PUBLIC_SITE_URL: https://aleramirezpo.github.io/micliente
+        run: npm run build
+
+      - name: Evitar que GitHub Pages ignore la carpeta _next
+        working-directory: web
+        # GitHub Pages descarta por defecto las carpetas que empiezan
+        # por guion bajo. Next pone ahí todo el CSS y el JavaScript,
+        # así que sin este archivo el sitio se vería sin formato.
+        run: touch out/.nojekyll
+
+      - name: Comprobar que se generaron los tres idiomas
+        working-directory: web
+        run: |
+          for idioma in es en fr; do
+            test -f "out/$idioma/index.html" || { echo "Falta out/$idioma/index.html"; exit 1; }
+            echo "OK out/$idioma/index.html"
+          done
+
+      - name: Preparar el paquete
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+
+  publicar:
+    name: Publicar
+    needs: compilar
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+
+    steps:
+      - name: Desplegar en GitHub Pages
+        id: despliegue
+        uses: actions/deploy-pages@v4

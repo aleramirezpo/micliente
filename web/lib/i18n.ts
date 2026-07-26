@@ -47,8 +47,26 @@ export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
-/** Dominio de producción. Se usa para URLs canónicas y hreflang. */
-export const SITE_URL = "https://micliente.co";
+/**
+ * Ruta base del sitio dentro del dominio.
+ * Vacía con dominio propio; `/micliente` en GitHub Pages.
+ */
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/**
+ * Dirección pública del sitio. Se usa para las URLs canónicas, el
+ * hreflang y los datos estructurados.
+ *
+ * Se puede sobrescribir con NEXT_PUBLIC_SITE_URL para publicar en
+ * GitHub Pages mientras no exista el dominio propio.
+ */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://micliente.co";
+
+/** Antepone la ruta base a un recurso de /public. */
+export function recurso(ruta: string): string {
+  return `${BASE_PATH}${ruta}`;
+}
 
 /**
  * URL absoluta de una ruta en un idioma dado.

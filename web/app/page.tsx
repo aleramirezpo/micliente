@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultLocale, SITE_URL } from "@/lib/i18n";
+import { defaultLocale, SITE_URL, BASE_PATH } from "@/lib/i18n";
 
 /**
  * Raíz del sitio (`/`).
@@ -20,7 +20,9 @@ export const metadata: Metadata = {
 };
 
 export default function Raiz() {
-  const destino = `/${defaultLocale}/`;
+  // Ruta absoluta desde la raíz del dominio. Incluye la subcarpeta
+  // cuando el sitio se publica en GitHub Pages.
+  const destino = `${BASE_PATH}/${defaultLocale}/`;
 
   return (
     <>

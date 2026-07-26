@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SITE_URL, recurso } from "@/lib/i18n";
 import "./tokens.css";
 import "./globals.css";
 
@@ -15,22 +16,25 @@ import "./globals.css";
  */
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://micliente.co"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Micliente · Automatización de WhatsApp con IA",
     template: "%s · Micliente",
   },
   description:
     "Atendemos tu WhatsApp con inteligencia artificial 24 horas y construimos tu página web con catálogo.",
+  // Los iconos se piden con ruta absoluta desde la raíz del dominio.
+  // En GitHub Pages el sitio vive en una subcarpeta, así que hay que
+  // anteponerla o el navegador no los encuentra.
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
-      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+      { url: recurso("/favicon.ico"), sizes: "any" },
+      { url: recurso("/icon-192.png"), type: "image/png", sizes: "192x192" },
+      { url: recurso("/icon-512.png"), type: "image/png", sizes: "512x512" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: recurso("/apple-touch-icon.png"),
   },
-  manifest: "/manifest.webmanifest",
+  manifest: recurso("/manifest.webmanifest"),
   robots: {
     index: true,
     follow: true,
