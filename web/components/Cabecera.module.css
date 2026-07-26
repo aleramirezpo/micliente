@@ -1,0 +1,252 @@
+/* ============================================================
+   Cabecera
+   Puntos de ruptura pensados por dispositivo:
+     < 60rem (960px)  -> móvil y iPad vertical: menú hamburguesa
+     >= 60rem         -> iPad horizontal y escritorio: menú completo
+   ============================================================ */
+
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-cabecera);
+  transition:
+    background-color var(--t-media) var(--curva),
+    border-color var(--t-media) var(--curva),
+    backdrop-filter var(--t-media) var(--curva);
+  border-bottom: 1px solid transparent;
+  /* Respeta la muesca del iPhone cuando el móvil está en horizontal */
+  padding-top: env(safe-area-inset-top);
+}
+
+.solida {
+  background: color-mix(in srgb, var(--fondo) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--borde);
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-4);
+  min-height: 4.25rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--texto);
+  min-width: 0;
+}
+
+/* Solo el rombo: pantallas estrechas donde el nombre no cabe */
+.logoCompacto {
+  display: block;
+}
+
+/* Rombo + nombre */
+.logoCompleto {
+  display: none;
+}
+
+@media (min-width: 26rem) {
+  .logoCompacto {
+    display: none;
+  }
+  .logoCompleto {
+    display: block;
+  }
+}
+
+/* ---------- Navegación de escritorio ---------- */
+
+.navEscritorio {
+  display: none;
+  align-items: center;
+  gap: clamp(var(--e-3), 1.6vw, var(--e-6));
+}
+
+.enlace {
+  font-size: var(--t-sm);
+  color: var(--texto-suave);
+  padding: var(--e-2) 0;
+  position: relative;
+  transition: color var(--t-media) var(--curva);
+  white-space: nowrap;
+}
+
+/* Subrayado dorado que crece desde el centro: el toque de
+   movimiento sutil que buscábamos, sin estridencias. */
+.enlace::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--acento-fuerte);
+  transition:
+    width var(--t-media) var(--curva),
+    left var(--t-media) var(--curva);
+}
+
+.enlace:hover {
+  color: var(--texto);
+}
+
+.enlace:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--e-1);
+  flex-shrink: 0;
+}
+
+@media (min-width: 26rem) {
+  .acciones {
+    gap: var(--e-2);
+  }
+}
+
+.ctaEscritorio {
+  display: none;
+}
+
+/* ---------- Botón hamburguesa ---------- */
+
+.hamburguesa {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  /* 44x44: área de toque cómoda */
+  width: 2.75rem;
+  height: 2.75rem;
+  background: transparent;
+  border: 1px solid var(--borde);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: border-color var(--t-media) var(--curva);
+}
+
+.hamburguesa:hover {
+  border-color: var(--acento-fuerte);
+}
+
+.raya {
+  display: block;
+  width: 1.125rem;
+  height: 1.5px;
+  background: var(--texto);
+  border-radius: 2px;
+  transition:
+    transform var(--t-media) var(--curva),
+    opacity var(--t-rapida) var(--curva);
+}
+
+/* Al abrir, las tres rayas se convierten en una equis */
+.raya1 {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.raya2 {
+  opacity: 0;
+}
+.raya3 {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ---------- Menú móvil ---------- */
+
+.menuMovil {
+  border-top: 1px solid var(--borde);
+  background: var(--fondo);
+  /* 100dvh tiene en cuenta la barra del navegador móvil, que
+     aparece y desaparece al hacer scroll. */
+  max-height: calc(100dvh - 4.25rem);
+  overflow-y: auto;
+  padding-bottom: env(safe-area-inset-bottom);
+  animation: desplegar var(--t-media) var(--curva);
+}
+
+@keyframes desplegar {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.menuAbierto {
+  display: block;
+}
+
+.navMovil {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+  padding: var(--e-4) var(--canal) var(--e-6);
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+}
+
+.enlaceMovil {
+  display: flex;
+  align-items: center;
+  /* 48px de alto: cómodo para el pulgar */
+  min-height: 3rem;
+  padding: var(--e-3) var(--e-2);
+  font-size: var(--t-md);
+  color: var(--texto);
+  border-bottom: 1px solid var(--borde);
+  transition: color var(--t-rapida) var(--curva);
+}
+
+.enlaceMovil:hover,
+.enlaceMovil:active {
+  color: var(--acento);
+}
+
+.navMovil > :global(.boton) {
+  margin-top: var(--e-4);
+}
+
+/* ============================================================
+   iPad horizontal y escritorio
+   ============================================================ */
+@media (min-width: 60rem) {
+  .navEscritorio {
+    display: flex;
+  }
+  .hamburguesa {
+    display: none;
+  }
+  .menuMovil {
+    display: none;
+  }
+  .ctaEscritorio {
+    display: inline-flex;
+  }
+}
+
+/* En pantallas muy anchas damos algo más de aire */
+@media (min-width: 80rem) {
+  .barra {
+    min-height: 4.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuMovil {
+    animation: none;
+  }
+}

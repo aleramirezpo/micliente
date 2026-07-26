@@ -1,0 +1,146 @@
+/* ============================================================
+   Precios
+   Móvil: el plan destacado aparece primero. Escritorio: tres
+   columnas con el destacado en el centro.
+   ============================================================ */
+
+.planes {
+  display: grid;
+  gap: var(--e-5);
+  align-items: stretch;
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--e-6);
+}
+
+.destacado {
+  order: -1;
+  border-color: var(--oro);
+  box-shadow: var(--sombra-oro);
+  transform: translateY(calc(var(--e-1) * -1));
+}
+
+.distintivo {
+  align-self: flex-start;
+  padding: var(--e-1) var(--e-3);
+  border-radius: var(--r-full);
+  background: var(--oro);
+  color: var(--grafito);
+  font-size: var(--t-xs);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  margin-bottom: var(--e-4);
+}
+
+.nombre {
+  font-size: var(--t-lg);
+  margin-bottom: var(--e-2);
+}
+
+.para {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  min-height: var(--e-7);
+  margin-bottom: var(--e-5);
+}
+
+.precio {
+  color: var(--acento);
+  font-size: var(--t-xl);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--interlinea-apretada);
+}
+
+.periodo {
+  color: var(--texto-tenue);
+  font-size: var(--t-xs);
+  margin-top: var(--e-1);
+}
+
+.incluye {
+  display: grid;
+  gap: var(--e-3);
+  margin-block: var(--e-6);
+}
+
+.incluye li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  min-width: 0;
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.icono {
+  inline-size: var(--e-5);
+  block-size: var(--e-5);
+  flex: none;
+  color: var(--exito);
+  margin-top: var(--e-1);
+}
+
+.cta {
+  margin-top: auto;
+}
+
+.implementacion {
+  display: grid;
+  gap: var(--e-4);
+  margin-top: var(--e-6);
+  padding: var(--e-5);
+  border: thin solid var(--borde-fuerte);
+  border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--oro) 6%, var(--fondo-elevado));
+  min-width: 0;
+}
+
+.tituloImplementacion {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-2);
+}
+
+.textoImplementacion,
+.nota {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.nota {
+  padding-top: var(--e-4);
+  border-top: thin solid var(--borde);
+}
+
+@media (min-width: 40rem) {
+  .implementacion {
+    padding: var(--e-6);
+  }
+}
+
+@media (min-width: 62rem) {
+  .planes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .destacado {
+    order: initial;
+  }
+
+  .implementacion {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--e-7);
+    align-items: center;
+  }
+
+  .nota {
+    padding-top: initial;
+    padding-left: var(--e-7);
+    border-top: initial;
+    border-left: thin solid var(--borde);
+  }
+}

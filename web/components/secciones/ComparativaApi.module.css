@@ -1,0 +1,42 @@
+/* ============================================================
+   Comparativa API
+   La caja limita el desplazamiento al área de la tabla. La última
+   columna recibe un fondo sutil para guiar la comparación.
+   ============================================================ */
+
+.tablaCaja {
+  min-width: 0;
+  border: thin solid var(--borde);
+  border-radius: var(--r-lg);
+  background: var(--fondo-elevado);
+  box-shadow: var(--sombra-sm);
+}
+
+.tabla {
+  min-width: calc(var(--e-10) * 5);
+}
+
+.tabla th:first-child {
+  color: var(--texto);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: normal;
+}
+
+.tabla .micliente {
+  color: var(--acento);
+  background: color-mix(in srgb, var(--oro) 9%, transparent);
+  font-weight: var(--peso-medio);
+}
+
+.nota {
+  margin-top: var(--e-5);
+  padding: var(--e-5);
+  border-inline-start: var(--e-1) solid var(--oro);
+  background: color-mix(in srgb, var(--oro) 7%, var(--fondo-elevado));
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  max-width: var(--ancho-texto);
+}

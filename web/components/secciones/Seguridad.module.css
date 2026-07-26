@@ -1,0 +1,23 @@
+/* ============================================================
+   Seguridad
+   Tarjetas oscuras sobre grafito, con iconografía lineal discreta
+   y una rejilla que crece sin imponer anchos fijos.
+   ============================================================ */
+
+.puntos {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, calc(var(--e-10) * 2)), 1fr)
+  );
+}
+
+.punto {
+  min-width: 0;
+}
+
+.icono {
+  inline-size: var(--e-6);
+  block-size: var(--e-6);
+  color: var(--oro-claro);
+  margin-bottom: var(--e-4);
+}

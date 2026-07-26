@@ -1,0 +1,90 @@
+/* ============================================================
+   Comisiones
+   Sección oscura de alto contraste. La tabla conserva su propio
+   desplazamiento horizontal en pantallas estrechas.
+   ============================================================ */
+
+.seccion {
+  overflow: clip;
+}
+
+.rejilla {
+  display: grid;
+  gap: var(--e-6);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, calc(var(--e-10) * 3)), 1fr)
+  );
+  align-items: stretch;
+}
+
+.ejemplo,
+.dato {
+  min-width: 0;
+  border: thin solid var(--grafito-borde);
+  border-radius: var(--r-xl);
+  background: var(--grafito-suave);
+}
+
+.ejemplo {
+  padding: var(--e-5);
+}
+
+.tituloEjemplo {
+  font-size: var(--t-md);
+  color: var(--marfil);
+  margin-bottom: var(--e-5);
+}
+
+.ejemplo th {
+  color: var(--marfil);
+  font-weight: var(--peso-normal);
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: normal;
+}
+
+.ejemplo td {
+  color: var(--oro-claro);
+  font-family: var(--fuente-mono);
+  font-weight: var(--peso-fuerte);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.ejemplo .negativa th,
+.ejemplo .negativa td {
+  color: var(--error);
+}
+
+.cierre {
+  color: var(--oro-claro);
+  font-size: var(--t-sm);
+  margin-top: var(--e-5);
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--e-6);
+  box-shadow: var(--sombra-oro);
+}
+
+.cifra {
+  font-size: var(--t-3xl);
+  margin-bottom: var(--e-4);
+}
+
+.textoDato {
+  color: color-mix(in srgb, var(--marfil) 78%, transparent);
+  font-size: var(--t-md);
+  max-width: var(--ancho-texto);
+}
+
+@media (min-width: 40rem) {
+  .ejemplo,
+  .dato {
+    padding: var(--e-7);
+  }
+}

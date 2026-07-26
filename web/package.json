@@ -1,0 +1,48 @@
+{
+  "name": "micliente",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de Micliente — automatización de WhatsApp con IA y desarrollo web con catálogo.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "audit": "npm audit --omit=dev",
+    "verificar": "npm run typecheck && npm run lint && npm run build"
+  },
+  "dependencies": {
+    "next": "16.2.12",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^10.8.0",
+    "eslint-config-next": "^16.2.12",
+    "typescript": "^5"
+  },
+  "//overrides": [
+    "Estas sobrescrituras fuerzan las versiones ya parcheadas de dependencias",
+    "transitivas con CVE conocidos. npm audit proponia como unica solucion",
+    "degradar Next.js a la version 9.3.3 (de 2020), lo cual es inaceptable.",
+    "Todas son dependencias de compilacion: el sitio se exporta estatico y",
+    "ninguna llega al navegador del visitante. Aun asi se corrigen por higiene.",
+    "brace-expansion 5.0.8 -> corrige DoS por expansion no acotada",
+    "minimatch 10.2.5     -> arrastra el brace-expansion parcheado",
+    "postcss 8.5.23       -> corrige XSS y lectura arbitraria via sourceMappingURL",
+    "sharp 0.35.3         -> corrige CVE heredados de libvips"
+  ],
+  "overrides": {
+    "brace-expansion": "^5.0.8",
+    "minimatch": "^10.2.5",
+    "postcss": "^8.5.23",
+    "sharp": "^0.35.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

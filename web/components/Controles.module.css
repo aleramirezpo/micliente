@@ -1,0 +1,110 @@
+/* ============================================================
+   Controles pequeños de la cabecera: idioma y tema
+   Todos con área de toque de 44x44 como mínimo.
+   ============================================================ */
+
+.caja {
+  position: relative;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-1);
+  min-width: 2.75rem;
+  height: 2.75rem;
+  padding-inline: var(--e-2);
+  background: transparent;
+  border: 1px solid var(--borde);
+  border-radius: var(--r-md);
+  color: var(--texto-suave);
+  cursor: pointer;
+  transition:
+    border-color var(--t-media) var(--curva),
+    color var(--t-media) var(--curva);
+}
+
+.control:hover {
+  border-color: var(--acento-fuerte);
+  color: var(--acento);
+}
+
+.textoControl {
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  font-weight: var(--peso-medio);
+}
+
+/* ---------- Menú desplegable de idioma ---------- */
+
+.menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 11rem;
+  background: var(--fondo-elevado);
+  border: 1px solid var(--borde);
+  border-radius: var(--r-md);
+  box-shadow: var(--sombra-lg);
+  padding: var(--e-1);
+  z-index: var(--z-modal);
+  animation: aparecerMenu var(--t-rapida) var(--curva);
+}
+
+@keyframes aparecerMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  /* 44px de alto para que se pueda tocar sin fallar */
+  min-height: 2.75rem;
+  padding: var(--e-2) var(--e-3);
+  border-radius: var(--r-sm);
+  font-size: var(--t-sm);
+  color: var(--texto);
+  transition: background-color var(--t-rapida) var(--curva);
+}
+
+.opcion:hover {
+  background: color-mix(in srgb, var(--acento-fuerte) 12%, transparent);
+}
+
+.opcionActiva {
+  color: var(--acento);
+}
+
+.codigo {
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  color: var(--texto-tenue);
+  min-width: 1.75rem;
+}
+
+.opcionActiva .codigo {
+  color: var(--acento-fuerte);
+}
+
+/* En móviles muy estrechos, el menú se ancla al borde y no se sale */
+@media (max-width: 22rem) {
+  .menu {
+    right: -0.5rem;
+    min-width: 9.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+}

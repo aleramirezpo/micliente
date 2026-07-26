@@ -1,0 +1,244 @@
+/* ============================================================
+   Hero
+   Móvil: una columna, el texto primero y la demo debajo.
+   iPad horizontal y escritorio: dos columnas.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.5rem, 1rem + 6vw, 6rem) var(--seccion-y);
+}
+
+/* Resplandor dorado muy tenue tras el texto. Es el único adorno
+   de fondo del sitio: aporta calidez sin distraer. */
+.resplandor {
+  position: absolute;
+  top: -18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80rem, 150%);
+  height: 34rem;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--oro) 16%, transparent) 0%,
+    transparent 68%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rejilla {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(2.5rem, 1rem + 5vw, 4.5rem);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.texto {
+  min-width: 0;
+}
+
+.distintivo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-size: var(--t-xs);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--acento);
+  border: 1px solid color-mix(in srgb, var(--acento-fuerte) 34%, transparent);
+  border-radius: var(--r-full);
+  padding: var(--e-2) var(--e-4);
+  margin-bottom: var(--e-5);
+}
+
+/* Punto que late suavemente: señal de "está activo ahora mismo" */
+.punto {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--acento-fuerte);
+  flex-shrink: 0;
+  animation: latir 2.4s var(--curva-suave) infinite;
+}
+
+@keyframes latir {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--oro) 55%, transparent);
+  }
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 0.4rem transparent;
+  }
+}
+
+.titulo {
+  font-size: var(--t-3xl);
+  line-height: var(--interlinea-apretada);
+  max-width: 16ch;
+  margin-bottom: var(--e-5);
+}
+
+.subtitulo {
+  font-size: var(--t-md);
+  color: var(--texto-suave);
+  max-width: 46ch;
+}
+
+.nota {
+  margin-top: var(--e-4);
+  font-size: var(--t-xs);
+  color: var(--texto-tenue);
+}
+
+/* ---------- Demostración de conversación ---------- */
+
+.demo {
+  margin: 0;
+  min-width: 0;
+  /* En móvil se centra y se limita el ancho para que no parezca
+     una pantalla estirada */
+  max-width: 24rem;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.telefono {
+  background: var(--grafito);
+  border: 1px solid var(--grafito-borde);
+  border-radius: var(--r-xl);
+  padding: var(--e-4);
+  box-shadow: var(--sombra-lg);
+  overflow: hidden;
+}
+
+.barraChat {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding-bottom: var(--e-4);
+  border-bottom: 1px solid var(--grafito-borde);
+  margin-bottom: var(--e-4);
+}
+
+/* El avatar es el rombo de la marca */
+.avatar {
+  width: 2.1rem;
+  height: 2.1rem;
+  flex-shrink: 0;
+  background: var(--oro);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.nombreChat {
+  display: block;
+  color: var(--marfil);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+}
+
+.estadoChat {
+  display: block;
+  color: var(--oro-claro);
+  font-size: var(--t-xs);
+}
+
+.mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+}
+
+.mensaje {
+  display: flex;
+  flex-direction: column;
+  max-width: 86%;
+  animation: entrarMensaje 0.5s var(--curva) both;
+}
+
+@keyframes entrarMensaje {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.deCliente {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.deBot {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.burbuja {
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--r-lg);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+}
+
+.deCliente .burbuja {
+  background: var(--oro);
+  color: var(--grafito);
+  border-bottom-right-radius: var(--r-sm);
+}
+
+.deBot .burbuja {
+  background: var(--grafito-suave);
+  color: var(--marfil);
+  border: 1px solid var(--grafito-borde);
+  border-bottom-left-radius: var(--r-sm);
+}
+
+.hora {
+  font-size: 0.66rem;
+  color: rgb(245 242 234 / 0.42);
+  margin-top: 0.2rem;
+  padding-inline: var(--e-2);
+}
+
+.pieDemo {
+  margin-top: var(--e-3);
+  font-size: var(--t-xs);
+  color: var(--texto-tenue);
+  text-align: center;
+}
+
+/* ---------- iPad horizontal y escritorio ---------- */
+@media (min-width: 62rem) {
+  .rejilla {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+  .demo {
+    max-width: 26rem;
+    margin-inline: 0;
+    margin-left: auto;
+  }
+  .titulo {
+    max-width: 14ch;
+  }
+}
+
+/* ---------- Sin animación si así se pide ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .punto {
+    animation: none;
+  }
+  .mensaje {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

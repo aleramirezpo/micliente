@@ -1,0 +1,24 @@
+/* ============================================================
+   Problema
+   Móvil: tarjetas apiladas. La rejilla global abre columnas
+   gradualmente sin forzar anchos que puedan desbordar.
+   ============================================================ */
+
+.seccion {
+  position: relative;
+}
+
+.tarjeta {
+  min-width: 0;
+}
+
+/* Pequeño filete de alerta: refuerza la urgencia con el color
+   semántico ya definido en el sistema. */
+.marca {
+  display: block;
+  inline-size: var(--e-7);
+  block-size: var(--e-1);
+  border-radius: var(--r-full);
+  background: var(--error);
+  margin-bottom: var(--e-5);
+}

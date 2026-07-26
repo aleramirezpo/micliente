@@ -1,0 +1,103 @@
+/* ============================================================
+   Servicios
+   Móvil: una tarjeta por fila. iPad y escritorio: dos servicios
+   equilibrados, con el bloque futuro ocupando todo el ancho.
+   ============================================================ */
+
+.lista {
+  align-items: stretch;
+}
+
+.servicio {
+  min-width: 0;
+  padding: var(--e-6);
+}
+
+.etiqueta {
+  color: var(--acento);
+  font-size: var(--t-xs);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  margin-bottom: var(--e-3);
+}
+
+.titulo {
+  font-size: var(--t-lg);
+  margin-bottom: var(--e-4);
+}
+
+.texto {
+  color: var(--texto-suave);
+  margin-bottom: var(--e-6);
+}
+
+.puntos {
+  display: grid;
+  gap: var(--e-3);
+}
+
+.punto {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  min-width: 0;
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.icono {
+  inline-size: var(--e-5);
+  block-size: var(--e-5);
+  flex: none;
+  color: var(--exito);
+  margin-top: var(--e-1);
+}
+
+.proximamente {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-4);
+  margin-top: var(--e-6);
+  padding: var(--e-5);
+  border: thin solid var(--borde-fuerte);
+  border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--oro) 7%, var(--fondo-elevado));
+  min-width: 0;
+}
+
+.rombo {
+  inline-size: var(--e-4);
+  block-size: var(--e-4);
+  flex: none;
+  background: var(--oro);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  margin-top: var(--e-2);
+}
+
+.proximoTitulo {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-2);
+}
+
+.proximoTexto {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+@media (min-width: 40rem) {
+  .servicio {
+    padding: var(--e-7);
+  }
+
+  .puntos {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--e-10) * 2)), 1fr)
+    );
+  }
+
+  .proximamente {
+    padding: var(--e-6);
+  }
+}

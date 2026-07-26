@@ -1,0 +1,33 @@
+/* ============================================================
+   Mercado
+   Las cifras son el punto de entrada visual y la rejilla evita
+   tarjetas demasiado estrechas en cualquier orientación.
+   ============================================================ */
+
+.datos {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, calc(var(--e-10) * 2)), 1fr)
+  );
+}
+
+.dato {
+  min-width: 0;
+}
+
+.cifra {
+  margin-bottom: var(--e-4);
+  overflow-wrap: anywhere;
+}
+
+.titulo {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-2);
+}
+
+.fuentes {
+  color: var(--texto-tenue);
+  font-size: var(--t-xs);
+  margin-top: var(--e-5);
+  max-width: var(--ancho-texto);
+}

@@ -1,0 +1,73 @@
+/* ============================================================
+   Agendar
+   Móvil: contenido y reserva de calendario apilados. Escritorio:
+   dos columnas con la reserva centrada.
+   ============================================================ */
+
+.rejilla {
+  display: grid;
+  gap: var(--e-7);
+  align-items: center;
+}
+
+.contenido,
+.calendario {
+  min-width: 0;
+}
+
+.puntos {
+  display: grid;
+  gap: var(--e-3);
+  margin-top: var(--e-6);
+}
+
+.puntos li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  color: var(--texto-suave);
+  min-width: 0;
+}
+
+.icono {
+  inline-size: var(--e-5);
+  block-size: var(--e-5);
+  flex: none;
+  color: var(--exito);
+  margin-top: var(--e-1);
+}
+
+.calendario {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--e-4);
+  min-block-size: calc(var(--e-10) * 2);
+  padding: var(--e-6);
+  border: thin dotted var(--borde-fuerte);
+  border-radius: var(--r-xl);
+  background: color-mix(in srgb, var(--oro) 5%, var(--fondo-elevado));
+  color: var(--texto-tenue);
+  text-align: center;
+}
+
+.iconoCalendario {
+  inline-size: var(--e-8);
+  block-size: var(--e-8);
+  color: var(--acento);
+}
+
+.calendario p {
+  max-width: var(--ancho-texto);
+  font-size: var(--t-sm);
+}
+
+@media (min-width: 62rem) {
+  .rejilla {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  }
+
+  .calendario {
+    min-block-size: calc(var(--e-10) * 3);
+  }
+}

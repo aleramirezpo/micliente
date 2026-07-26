@@ -1,0 +1,55 @@
+/* ============================================================
+   Cómo funciona
+   La secuencia se adapta con la rejilla global y mantiene una
+   lectura lineal cuando solo cabe una columna.
+   ============================================================ */
+
+.seccion {
+  overflow: clip;
+}
+
+.pasos {
+  counter-reset: pasos;
+}
+
+.paso {
+  min-width: 0;
+  position: relative;
+  padding: var(--e-5);
+  border: thin solid var(--borde);
+  border-radius: var(--r-lg);
+  background: var(--fondo-elevado);
+}
+
+.numero {
+  display: block;
+  color: var(--acento);
+  font-family: var(--fuente-mono);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: var(--tracking-etiqueta);
+}
+
+.linea {
+  inline-size: var(--e-8);
+  block-size: var(--e-1);
+  margin-block: var(--e-4) var(--e-5);
+  border-radius: var(--r-full);
+  background: var(--oro);
+}
+
+.titulo {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-3);
+}
+
+.texto {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+@media (min-width: 40rem) {
+  .paso {
+    padding: var(--e-6);
+  }
+}

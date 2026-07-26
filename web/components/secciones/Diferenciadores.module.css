@@ -1,0 +1,59 @@
+/* ============================================================
+   Diferenciadores
+   Lista editorial numerada: una columna en móvil y dos columnas
+   amplias desde iPad para conservar líneas cómodas de lectura.
+   ============================================================ */
+
+.lista {
+  display: grid;
+  gap: var(--e-4);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--e-4);
+  min-width: 0;
+  padding: var(--e-5);
+  border: thin solid var(--borde);
+  border-radius: var(--r-lg);
+  background: var(--fondo-elevado);
+}
+
+.numero {
+  color: var(--oro);
+  font-family: var(--fuente-mono);
+  font-size: var(--t-lg);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--interlinea-apretada);
+}
+
+.contenido {
+  min-width: 0;
+}
+
+.titulo {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-2);
+}
+
+.texto {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+@media (min-width: 40rem) {
+  .lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .item {
+    padding: var(--e-6);
+  }
+}
+
+@media (min-width: 62rem) {
+  .item:last-child {
+    grid-column: span 2;
+  }
+}

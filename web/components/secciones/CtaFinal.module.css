@@ -1,0 +1,32 @@
+/* ============================================================
+   Llamada final
+   Cierre oscuro, centrado y deliberadamente simple para que las
+   dos acciones sean el único foco.
+   ============================================================ */
+
+.seccion {
+  position: relative;
+  overflow: clip;
+}
+
+.contenido {
+  max-width: var(--ancho-texto);
+}
+
+.titulo {
+  color: var(--marfil);
+  font-size: var(--t-2xl);
+  margin-inline: auto;
+  max-width: min(100%, calc(var(--e-10) * 6));
+}
+
+.texto {
+  color: color-mix(in srgb, var(--marfil) 74%, transparent);
+  font-size: var(--t-md);
+  margin: var(--e-4) auto 0;
+  max-width: var(--ancho-texto);
+}
+
+.botones {
+  justify-content: center;
+}

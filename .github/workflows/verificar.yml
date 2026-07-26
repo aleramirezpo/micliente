@@ -1,0 +1,77 @@
+# ============================================================
+#  Verificación automática
+#
+#  Cada cambio que llegue al repositorio se comprueba solo:
+#  tipos, lint, compilación, equivalencia de las traducciones,
+#  comportamiento en móvil y vulnerabilidades de dependencias.
+#
+#  El despliegue lo hace Cloudflare Pages por su cuenta al detectar
+#  el cambio. Este flujo solo verifica que lo que se sube funciona.
+# ============================================================
+
+name: Verificar
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Permisos mínimos: este flujo solo necesita leer el código.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Tipos, lint, compilación y auditorías
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: web
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Comprobar tipos
+        run: npm run typecheck
+
+      - name: Revisar el código
+        run: npm run lint
+
+      - name: Comprobar que las traducciones son equivalentes
+        run: node scripts/verificar-traducciones.mjs
+
+      - name: Auditar comportamiento en móvil e iPad
+        run: node scripts/auditar-responsive.mjs
+
+      - name: Compilar el sitio estático
+        run: npm run build
+
+      - name: Confirmar que se generaron los tres idiomas
+        run: |
+          for idioma in es en fr; do
+            if [ ! -f "out/$idioma/index.html" ]; then
+              echo "Falta out/$idioma/index.html"
+              exit 1
+            fi
+            echo "OK out/$idioma/index.html"
+          done
+
+      - name: Buscar vulnerabilidades
+        run: npm audit --audit-level=moderate

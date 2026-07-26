@@ -1,0 +1,244 @@
+/* ============================================================
+   Demostración de conversación del hero
+   ============================================================ */
+
+.envoltura {
+  width: 100%;
+  max-width: 25rem;
+  margin-inline: auto;
+}
+
+/* ---------- Selector de sector ---------- */
+
+.sectores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin-bottom: var(--e-4);
+  justify-content: center;
+}
+
+.sector {
+  /* 44px: el mínimo para tocar con el dedo sin fallar.
+     Son cuatro pastillas seguidas, y en móvil se falla mucho si son
+     más bajas. */
+  min-height: 2.75rem;
+  padding: var(--e-2) var(--e-4);
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  background: transparent;
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition:
+    background-color var(--t-media) var(--curva),
+    border-color var(--t-media) var(--curva),
+    color var(--t-media) var(--curva);
+  white-space: nowrap;
+}
+
+.sector:hover {
+  border-color: var(--acento-fuerte);
+  color: var(--acento);
+}
+
+.sectorActivo {
+  background: var(--acento-fuerte);
+  border-color: var(--acento-fuerte);
+  color: var(--grafito);
+}
+
+/* ---------- El teléfono ---------- */
+
+.telefono {
+  background: var(--grafito);
+  border: 1px solid var(--grafito-borde);
+  border-radius: var(--r-xl);
+  padding: var(--e-4);
+  box-shadow: var(--sombra-lg);
+  /* Alto fijo para que la página no dé saltos al aparecer mensajes.
+     Es el detalle que evita el "salto de contenido" que penaliza Google. */
+  height: 27rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.barraChat {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding-bottom: var(--e-3);
+  border-bottom: 1px solid var(--grafito-borde);
+  margin-bottom: var(--e-3);
+  flex-shrink: 0;
+}
+
+/* El avatar es el rombo de la marca */
+.avatar {
+  width: 2.1rem;
+  height: 2.1rem;
+  flex-shrink: 0;
+  background: var(--oro);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.datosChat {
+  min-width: 0;
+}
+
+.nombreChat {
+  display: block;
+  color: var(--marfil);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+}
+
+.estadoChat {
+  display: block;
+  color: var(--oro-claro);
+  font-size: var(--t-xs);
+  transition: opacity var(--t-rapida) var(--curva);
+}
+
+/* ---------- Mensajes ---------- */
+
+.mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--grafito-borde) transparent;
+  padding-right: var(--e-1);
+}
+
+.mensaje {
+  display: flex;
+  flex-direction: column;
+  max-width: 86%;
+  animation: entrarMensaje 0.42s var(--curva) both;
+}
+
+@keyframes entrarMensaje {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.deCliente {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.deBot {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.burbuja {
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--r-lg);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+}
+
+.deCliente .burbuja {
+  background: var(--oro);
+  color: var(--grafito);
+  border-bottom-right-radius: var(--r-sm);
+}
+
+.deBot .burbuja {
+  background: var(--grafito-suave);
+  color: var(--marfil);
+  border: 1px solid var(--grafito-borde);
+  border-bottom-left-radius: var(--r-sm);
+}
+
+.hora {
+  font-size: 0.66rem;
+  color: rgb(245 242 234 / 0.42);
+  margin-top: 0.2rem;
+  padding-inline: var(--e-2);
+}
+
+/* ---------- Indicador de "escribiendo" ---------- */
+
+.puntos {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding-block: var(--e-4);
+}
+
+.puntos span {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--oro-claro);
+  animation: rebotar 1.25s var(--curva-suave) infinite;
+}
+
+.puntos span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.puntos span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes rebotar {
+  0%,
+  70%,
+  100% {
+    opacity: 0.32;
+    transform: translateY(0);
+  }
+  35% {
+    opacity: 1;
+    transform: translateY(-0.22rem);
+  }
+}
+
+/* ---------- Móviles pequeños ---------- */
+@media (max-width: 24rem) {
+  .telefono {
+    height: 25rem;
+  }
+  .sector {
+    padding-inline: var(--e-3);
+  }
+}
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 62rem) {
+  .envoltura {
+    margin-inline: 0;
+    margin-left: auto;
+    max-width: 26rem;
+  }
+  .sectores {
+    justify-content: flex-start;
+  }
+}
+
+/* ---------- Movimiento reducido ----------
+   La secuencia de mensajes se mantiene: es la demostración del
+   producto. Lo que se elimina es el desplazamiento y el escalado
+   de cada burbuja, que es el movimiento que puede molestar.
+   Los mensajes siguen apareciendo, pero de golpe y sin deslizarse. */
+@media (prefers-reduced-motion: reduce) {
+  .mensaje {
+    animation: none;
+  }
+  .puntos span {
+    animation: none;
+    opacity: 0.55;
+  }
+}

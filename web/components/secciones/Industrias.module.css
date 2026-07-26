@@ -1,0 +1,42 @@
+/* ============================================================
+   Industrias
+   Cada tarjeta contrapone el problema y la solución únicamente
+   con jerarquía visual; no necesita etiquetas añadidas.
+   ============================================================ */
+
+.lista {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, calc(var(--e-10) * 2)), 1fr)
+  );
+}
+
+.industria {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-4);
+}
+
+.dolor {
+  color: var(--texto-tenue);
+  font-size: var(--t-sm);
+}
+
+.separador {
+  inline-size: var(--e-7);
+  block-size: var(--e-1);
+  border-radius: var(--r-full);
+  background: var(--oro);
+  margin-block: var(--e-4);
+}
+
+.solucion {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+}

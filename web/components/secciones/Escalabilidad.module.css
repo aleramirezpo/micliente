@@ -1,0 +1,66 @@
+/* ============================================================
+   Escalabilidad
+   Las cuatro capas se leen como una secuencia vertical compacta
+   y se convierten en pares amplios a partir de iPad.
+   ============================================================ */
+
+.seccion {
+  overflow: clip;
+}
+
+.capas {
+  display: grid;
+  gap: var(--e-4);
+}
+
+.capa {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--e-4);
+  align-items: start;
+  min-width: 0;
+  padding: var(--e-5);
+  border: thin solid var(--borde);
+  border-radius: var(--r-lg);
+}
+
+.indice {
+  inline-size: var(--e-5);
+  block-size: var(--e-5);
+  border: thin solid var(--oro);
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--oro) 18%, transparent);
+  margin: var(--e-2);
+}
+
+.titulo {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-2);
+}
+
+.texto {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.cierre {
+  margin-top: var(--e-6);
+  padding: var(--e-5);
+  border-radius: var(--r-lg);
+  background: var(--grafito);
+  color: var(--marfil);
+  font-size: var(--t-md);
+  font-weight: var(--peso-medio);
+  box-shadow: var(--sombra-md);
+}
+
+@media (min-width: 40rem) {
+  .capas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .capa,
+  .cierre {
+    padding: var(--e-6);
+  }
+}

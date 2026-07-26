@@ -1,0 +1,114 @@
+/* ============================================================
+   Preguntas frecuentes
+   Acordeón nativo: área táctil amplia, foco visible global y una
+   apertura sutil basada en filas de grid.
+   ============================================================ */
+
+.contenedor {
+  max-width: var(--ancho-texto);
+}
+
+.lista {
+  display: grid;
+  gap: var(--e-3);
+}
+
+.item {
+  min-width: 0;
+  border: thin solid var(--borde);
+  border-radius: var(--r-lg);
+  background: var(--fondo-elevado);
+  overflow: clip;
+}
+
+.pregunta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-4);
+  min-block-size: var(--e-7);
+  padding: var(--e-4) var(--e-5);
+  cursor: pointer;
+  font-size: var(--t-md);
+  font-weight: var(--peso-medio);
+  line-height: var(--interlinea-titulo);
+}
+
+.pregunta::-webkit-details-marker {
+  display: none;
+}
+
+.pregunta::marker {
+  content: "";
+}
+
+/* Dos filetes forman el marcador. Al abrir, el vertical desaparece;
+   no hay giros ni movimientos bruscos. */
+.marcador {
+  position: relative;
+  inline-size: var(--e-5);
+  block-size: var(--e-5);
+  flex: none;
+}
+
+.marcador::before,
+.marcador::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  inline-size: var(--e-4);
+  block-size: var(--e-1);
+  border-radius: var(--r-full);
+  background: var(--oro);
+  translate: -50% -50%;
+}
+
+.marcador::after {
+  inline-size: var(--e-1);
+  block-size: var(--e-4);
+  opacity: 1;
+  transition: opacity var(--t-media) var(--curva);
+}
+
+.item[open] .marcador::after {
+  opacity: 0;
+}
+
+.respuesta {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--t-media) var(--curva);
+}
+
+.item[open] .respuesta {
+  grid-template-rows: 1fr;
+}
+
+.respuestaInterior {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.respuestaInterior p {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  padding: var(--e-1) var(--e-5) var(--e-5);
+}
+
+@media (min-width: 40rem) {
+  .pregunta {
+    padding: var(--e-5) var(--e-6);
+  }
+
+  .respuestaInterior p {
+    padding-inline: var(--e-6);
+    padding-bottom: var(--e-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marcador::after,
+  .respuesta {
+    transition: none;
+  }
+}

@@ -1,0 +1,144 @@
+/* ============================================================
+   Contacto
+   Canales autoajustables y formulario de una columna en móvil,
+   dos columnas desde iPad. Todos los controles superan 44 px.
+   ============================================================ */
+
+.seccion {
+  overflow: clip;
+}
+
+.canales {
+  margin-bottom: var(--e-7);
+}
+
+.canal {
+  min-width: 0;
+}
+
+.etiquetaCanal {
+  color: var(--acento);
+  font-size: var(--t-xs);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  margin-bottom: var(--e-2);
+}
+
+.valorCanal {
+  font-size: var(--t-md);
+  font-weight: var(--peso-medio);
+  overflow-wrap: anywhere;
+}
+
+.notaCanal {
+  color: var(--texto-tenue);
+  font-size: var(--t-xs);
+  margin-top: var(--e-2);
+}
+
+.formulario {
+  position: relative;
+  min-width: 0;
+  padding: var(--e-5);
+  border: thin solid var(--borde);
+  border-radius: var(--r-xl);
+  background: var(--fondo-elevado);
+  box-shadow: var(--sombra-md);
+}
+
+.campos {
+  display: grid;
+  gap: var(--e-5);
+}
+
+.campo {
+  display: grid;
+  align-content: start;
+  gap: var(--e-2);
+  min-width: 0;
+}
+
+.campo label {
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  inline-size: 100%;
+  min-block-size: var(--e-7);
+  border: thin solid var(--borde-fuerte);
+  border-radius: var(--r-md);
+  background: var(--fondo);
+  padding: var(--e-3) var(--e-4);
+  transition:
+    border-color var(--t-rapida) var(--curva),
+    box-shadow var(--t-rapida) var(--curva);
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--oro);
+  box-shadow: var(--sombra-oro);
+}
+
+.campo [aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.campo textarea {
+  min-block-size: var(--e-10);
+  resize: vertical;
+}
+
+.error {
+  color: var(--error);
+  font-size: var(--t-xs);
+}
+
+.privacidad {
+  color: var(--texto-tenue);
+  font-size: var(--t-xs);
+  max-width: var(--ancho-texto);
+  margin-block: var(--e-5);
+}
+
+.exito {
+  color: var(--exito);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+  margin-top: var(--e-4);
+}
+
+/* El honeypot permanece en el documento para bots, pero totalmente
+   fuera de la superficie visible y del orden de tabulación. */
+.trampa {
+  position: absolute;
+  inset-inline-start: calc(var(--e-10) * -100);
+  inset-block-start: auto;
+  inline-size: var(--e-1);
+  block-size: var(--e-1);
+  overflow: hidden;
+}
+
+@media (min-width: 40rem) {
+  .formulario {
+    padding: var(--e-6);
+  }
+
+  .campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campoAncho {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 62rem) {
+  .formulario {
+    padding: var(--e-7);
+  }
+}

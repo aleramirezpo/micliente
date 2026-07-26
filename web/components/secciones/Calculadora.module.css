@@ -1,0 +1,166 @@
+/* ============================================================
+   Calculadora
+   Móvil: controles y resultado apilados. Escritorio: dos columnas.
+   Cada rango ofrece una zona táctil mayor al mínimo requerido.
+   ============================================================ */
+
+.seccion {
+  overflow: clip;
+}
+
+.rejilla {
+  display: grid;
+  gap: var(--e-6);
+  align-items: start;
+}
+
+.controles,
+.resultados {
+  min-width: 0;
+  border: thin solid var(--borde);
+  border-radius: var(--r-xl);
+  background: var(--fondo-elevado);
+  padding: var(--e-5);
+}
+
+.controles {
+  display: grid;
+  gap: var(--e-6);
+}
+
+.campo {
+  min-width: 0;
+}
+
+.filaEtiqueta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-3);
+  margin-bottom: var(--e-2);
+  min-width: 0;
+}
+
+.filaEtiqueta label {
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+}
+
+.filaEtiqueta output {
+  color: var(--acento);
+  font-family: var(--fuente-mono);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-fuerte);
+  text-align: right;
+  flex: none;
+}
+
+.campo input {
+  inline-size: 100%;
+  min-block-size: var(--e-7);
+  margin: initial;
+  cursor: pointer;
+  accent-color: var(--oro);
+  appearance: none;
+  background: transparent;
+}
+
+.campo input::-webkit-slider-runnable-track {
+  block-size: var(--e-2);
+  border-radius: var(--r-full);
+  background: var(--borde);
+}
+
+.campo input::-webkit-slider-thumb {
+  inline-size: var(--e-6);
+  block-size: var(--e-6);
+  margin-top: calc(var(--e-3) * -1);
+  border: thin solid var(--oro-oscuro);
+  border-radius: var(--r-full);
+  background: var(--oro);
+  box-shadow: var(--sombra-sm);
+  -webkit-appearance: none;
+}
+
+.campo input::-moz-range-track {
+  block-size: var(--e-2);
+  border-radius: var(--r-full);
+  background: var(--borde);
+}
+
+.campo input::-moz-range-thumb {
+  inline-size: var(--e-6);
+  block-size: var(--e-6);
+  border: thin solid var(--oro-oscuro);
+  border-radius: var(--r-full);
+  background: var(--oro);
+  box-shadow: var(--sombra-sm);
+}
+
+.resultados {
+  background: var(--grafito);
+  border-color: var(--grafito-borde);
+  color: var(--marfil);
+  box-shadow: var(--sombra-lg);
+}
+
+.tituloResultados {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-5);
+}
+
+.listaResultados {
+  display: grid;
+  gap: var(--e-4);
+  margin-bottom: var(--e-5);
+}
+
+.listaResultados > div {
+  display: grid;
+  gap: var(--e-1);
+  min-width: 0;
+  padding-bottom: var(--e-4);
+  border-bottom: thin solid var(--grafito-borde);
+}
+
+.listaResultados dt {
+  color: color-mix(in srgb, var(--marfil) 70%, transparent);
+  font-size: var(--t-sm);
+}
+
+.listaResultados dd {
+  color: var(--oro-claro);
+  font-family: var(--fuente-mono);
+  font-size: var(--t-lg);
+  line-height: var(--interlinea-apretada);
+  overflow-wrap: anywhere;
+}
+
+.listaResultados .resultadoPrincipal dd {
+  font-size: var(--t-2xl);
+}
+
+.nota {
+  color: color-mix(in srgb, var(--marfil) 62%, transparent);
+  font-size: var(--t-xs);
+  margin-bottom: var(--e-5);
+}
+
+@media (min-width: 40rem) {
+  .controles,
+  .resultados {
+    padding: var(--e-6);
+  }
+}
+
+@media (min-width: 62rem) {
+  .rejilla {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--e-7);
+  }
+
+  .resultados {
+    position: sticky;
+    top: var(--e-9);
+  }
+}

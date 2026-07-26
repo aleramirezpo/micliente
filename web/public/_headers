@@ -1,0 +1,66 @@
+# ============================================================
+#  Cabeceras de seguridad — Cloudflare Pages
+#
+#  Next.js NO puede emitir cabeceras HTTP en exportación estática
+#  (la opción `headers` de next.config no está soportada), porque no
+#  hay servidor. Cloudflare Pages lee este archivo al desplegar y
+#  las aplica a cada respuesta.
+#
+#  Comprobar el resultado en https://securityheaders.com
+# ============================================================
+
+/*
+  # --- Política de seguridad de contenido ---
+  # El sitio no carga NADA de terceros: ni scripts, ni tipografías,
+  # ni analítica externa. Por eso la política puede ser muy estricta.
+  #
+  # 'unsafe-inline' en script-src es necesario por dos scripts en línea
+  # muy pequeños y controlados por nosotros: el que aplica el tema
+  # antes del primer pintado y el que ajusta el atributo lang.
+  # Next.js además inyecta sus propios scripts de hidratación en línea.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests
+
+  # Impide que el sitio se incruste en un iframe ajeno (clickjacking)
+  X-Frame-Options: DENY
+
+  # El navegador no debe adivinar el tipo de archivo
+  X-Content-Type-Options: nosniff
+
+  # No filtrar la ruta completa al navegar a otro dominio
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Fuerza HTTPS durante dos años, incluidos subdominios
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Desactiva APIs del navegador que este sitio no usa
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=()
+
+  # Aislamiento de origen
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+  # No revelar el framework
+  X-Powered-By:
+
+# --- Almacenamiento en caché ---
+
+# Los archivos con huella en el nombre nunca cambian: se cachean un año
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imágenes y vectores de marca
+/marca/*
+  Cache-Control: public, max-age=31536000, immutable
+
+*.png
+  Cache-Control: public, max-age=2592000
+
+*.svg
+  Cache-Control: public, max-age=2592000
+
+*.ico
+  Cache-Control: public, max-age=2592000
+
+# El HTML se revalida siempre, para que un cambio se vea al instante
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

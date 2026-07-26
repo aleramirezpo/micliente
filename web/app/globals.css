@@ -1,0 +1,507 @@
+/* ============================================================
+   MICLIENTE — Estilos base
+   Todos los valores vienen de tokens.css.
+   Prioridad: verse impecable en móvil, iPad y escritorio.
+   ============================================================ */
+
+/* ---------- Reinicio moderno ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* iOS no debe reescalar el texto por su cuenta */
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem; /* hueco bajo la cabecera fija al saltar a un ancla */
+}
+
+body {
+  font-family: var(--fuente);
+  font-size: var(--t-base);
+  line-height: var(--interlinea-texto);
+  color: var(--texto);
+  background: var(--fondo);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100svh;
+
+  /* Regla crítica: la página NUNCA se desplaza en horizontal.
+     El contenido ancho (tablas) scrollea en su propia caja. */
+  overflow-x: hidden;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: var(--interlinea-titulo);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-titulo);
+  text-wrap: balance; /* evita títulos con una palabra huérfana */
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Accesibilidad ---------- */
+
+/* Foco visible y consistente. Nunca se elimina: es la única guía
+   para quien navega con teclado. */
+:focus-visible {
+  outline: 2px solid var(--acento-fuerte);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.salta-contenido {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: var(--z-modal);
+  padding: var(--e-3) var(--e-5);
+  background: var(--fondo-inverso);
+  color: var(--texto-inverso);
+  border-radius: 0 0 var(--r-md) 0;
+}
+.salta-contenido:focus {
+  left: 0;
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Disposición ---------- */
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  /* Respeta la muesca del iPhone en horizontal */
+  padding-inline: max(
+    var(--canal),
+    env(safe-area-inset-left),
+    env(safe-area-inset-right)
+  );
+}
+
+.seccion {
+  padding-block: var(--seccion-y);
+}
+
+/* Solo para los dos momentos de mayor impacto emocional de la página.
+   Usado con moderación, el contraste funciona; abusar de él cansa. */
+.seccion--oscura {
+  background: var(--grafito);
+  color: var(--marfil);
+}
+
+.seccion--elevada {
+  background: var(--fondo-elevado);
+}
+
+/* Franja cálida en tono champán: separa secciones sin oscurecer */
+.seccion--tinte {
+  background: var(--fondo-tinte);
+}
+
+/* Franja fría, para alternar y que la página no se vuelva monótona */
+.seccion--fria {
+  background: var(--fondo-frio);
+}
+
+/* Filete dorado superior: marca el inicio de una sección importante
+   sin necesidad de recurrir a un fondo oscuro. */
+.seccion--filete {
+  border-top: 2px solid var(--acento-fuerte);
+}
+
+/* Rejilla que se adapta sola, sin media queries.
+   El min(100%, …) impide que desborde en pantallas estrechas. */
+.rejilla {
+  display: grid;
+  gap: var(--e-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+
+.rejilla--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+.rejilla--4 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+/* ---------- Tipografía de secciones ---------- */
+
+.etiqueta-seccion {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-size: var(--t-xs);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-bottom: var(--e-3);
+}
+
+.etiqueta-seccion::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--acento-fuerte);
+  flex-shrink: 0;
+}
+
+.titulo-seccion {
+  font-size: var(--t-xl);
+  max-width: 22ch;
+}
+
+.texto-seccion {
+  color: var(--texto-suave);
+  max-width: var(--ancho-texto);
+  margin-top: var(--e-4);
+  font-size: var(--t-md);
+}
+
+.seccion--oscura .texto-seccion {
+  color: rgb(245 242 234 / 0.74);
+}
+
+.encabezado-seccion {
+  margin-bottom: var(--e-7);
+}
+
+/* ---------- Botones ----------
+   Altura mínima 46px: tamaño de toque cómodo para un dedo. */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-height: 2.875rem;
+  padding: var(--e-3) var(--e-5);
+  border: 1px solid transparent;
+  border-radius: var(--r-full);
+  font-size: var(--t-sm);
+  font-weight: var(--peso-medio);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background-color var(--t-media) var(--curva),
+    color var(--t-media) var(--curva),
+    border-color var(--t-media) var(--curva),
+    transform var(--t-rapida) var(--curva),
+    box-shadow var(--t-media) var(--curva);
+  text-align: center;
+}
+
+.boton--primario {
+  background: var(--oro);
+  color: var(--grafito);
+  box-shadow: var(--sombra-oro);
+}
+.boton--primario:hover {
+  background: var(--oro-claro);
+  transform: translateY(-2px);
+}
+
+.boton--secundario {
+  background: transparent;
+  color: var(--texto);
+  border-color: var(--borde-fuerte);
+}
+.boton--secundario:hover {
+  border-color: var(--acento-fuerte);
+  color: var(--acento);
+}
+
+.boton--claro {
+  background: transparent;
+  color: var(--marfil);
+  border-color: rgb(245 242 234 / 0.32);
+}
+.boton--claro:hover {
+  border-color: var(--oro);
+  color: var(--oro-claro);
+}
+
+.boton:active {
+  transform: translateY(0);
+}
+
+.grupo-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-3);
+  margin-top: var(--e-6);
+}
+
+/* En móviles estrechos los botones ocupan todo el ancho */
+@media (max-width: 26rem) {
+  .boton {
+    width: 100%;
+  }
+  .grupo-botones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ---------- Tarjetas ---------- */
+
+.tarjeta {
+  background: var(--fondo-elevado);
+  border: 1px solid var(--borde);
+  border-radius: var(--r-lg);
+  padding: var(--e-5);
+  transition:
+    transform var(--t-media) var(--curva),
+    box-shadow var(--t-media) var(--curva),
+    border-color var(--t-media) var(--curva);
+  height: 100%;
+}
+
+.tarjeta:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-md);
+  border-color: var(--borde-fuerte);
+}
+
+.tarjeta--oscura {
+  background: var(--grafito-suave);
+  border-color: var(--grafito-borde);
+  color: var(--marfil);
+}
+
+.tarjeta__titulo {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-2);
+}
+
+.tarjeta__texto {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.tarjeta--oscura .tarjeta__texto {
+  color: rgb(245 242 234 / 0.72);
+}
+
+/* ---------- Tablas ----------
+   Envolver SIEMPRE en .tabla-scroll: en móvil la tabla se desplaza
+   dentro de su caja y la página se queda quieta. */
+
+.tabla-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.tabla {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+}
+
+.tabla th,
+.tabla td {
+  padding: var(--e-3) var(--e-4);
+  text-align: left;
+  border-bottom: 1px solid var(--borde);
+  vertical-align: top;
+}
+
+.tabla th {
+  font-weight: var(--peso-medio);
+  color: var(--acento);
+  font-size: var(--t-xs);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.seccion--oscura .tabla th,
+.seccion--oscura .tabla td {
+  border-color: var(--grafito-borde);
+}
+
+/* Pista de que la tabla se puede desplazar; solo en pantallas chicas */
+.aviso-scroll {
+  font-size: var(--t-xs);
+  color: var(--texto-tenue);
+  margin-top: var(--e-2);
+}
+@media (min-width: 46rem) {
+  .aviso-scroll {
+    display: none;
+  }
+}
+
+/* ---------- Movimiento ----------
+   Sutil y breve: acompaña, nunca protagoniza.
+   CSS puro e IntersectionObserver nativo, sin librerías externas. */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* El estado inicial solo se aplica si hay JavaScript activo.
+   Si el script falla, el contenido se ve igual: nunca queda invisible. */
+.revelar {
+  opacity: 1;
+}
+
+html.js .revelar {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--t-lenta) var(--curva-suave),
+    transform var(--t-lenta) var(--curva-suave);
+}
+
+html.js .revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cascada para filas de tarjetas */
+html.js .revelar[data-retardo="1"] { transition-delay: 80ms; }
+html.js .revelar[data-retardo="2"] { transition-delay: 160ms; }
+html.js .revelar[data-retardo="3"] { transition-delay: 240ms; }
+html.js .revelar[data-retardo="4"] { transition-delay: 320ms; }
+html.js .revelar[data-retardo="5"] { transition-delay: 400ms; }
+
+/* Respeto absoluto a quien pide menos movimiento: para algunas
+   personas la animación provoca mareo real. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js .revelar {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .tarjeta:hover,
+  .boton:hover {
+    transform: none !important;
+  }
+}
+
+/* ---------- Utilidades ---------- */
+
+.filete {
+  height: 1px;
+  background: var(--acento-fuerte);
+  border: 0;
+  width: 3rem;
+}
+
+.destacado-oro {
+  color: var(--acento);
+}
+
+.cifra-grande {
+  font-size: var(--t-2xl);
+  color: var(--acento-fuerte);
+  line-height: 1;
+  font-weight: var(--peso-medio);
+}
+
+.texto-centrado {
+  text-align: center;
+}
+
+.apilar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+}
+
+/* ---------- Impresión ---------- */
+@media print {
+  .no-imprimir {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
