@@ -38,6 +38,10 @@
   --texto-inverso: var(--marfil);
   --acento: #7e6330;
   --acento-fuerte: var(--oro);
+  /* Dorado para cifras grandes sobre fondo claro. El dorado de marca
+     se queda en 2,4:1 y el mínimo para texto grande es 3:1. Este llega
+     a 3,4:1 sin perder el carácter dorado. */
+  --acento-cifra: #a67f30;
   --borde: #e6e0d3;
   --borde-fuerte: #cec8ba;
 
@@ -144,6 +148,7 @@
   --texto-inverso: var(--grafito);
   --acento: var(--oro-claro);
   --acento-fuerte: var(--oro);
+  --acento-cifra: var(--oro-claro);
   --borde: var(--grafito-borde);
   --borde-fuerte: #454c56;
   --exito: #6fbb92;
