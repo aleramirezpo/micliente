@@ -1,24 +1,48 @@
-import { isLocale, type Locale } from "@/lib/i18n";
+import type { Metadata } from "next";
+import { isLocale, localeTags, type Locale } from "@/lib/i18n";
 import { obtenerContenido } from "@/lib/contenido";
+import { urlAbsoluta, alternativasDe } from "@/lib/rutas";
 import { Hero } from "@/components/secciones/Hero";
 import { Problema } from "@/components/secciones/Problema";
 import { ComoFunciona } from "@/components/secciones/ComoFunciona";
-import { Servicios } from "@/components/secciones/Servicios";
-import { Comisiones } from "@/components/secciones/Comisiones";
-import { Calculadora } from "@/components/secciones/Calculadora";
-import { Mercado } from "@/components/secciones/Mercado";
-import { Industrias } from "@/components/secciones/Industrias";
-import { ComparativaApi } from "@/components/secciones/ComparativaApi";
 import { Diferenciadores } from "@/components/secciones/Diferenciadores";
-import { Escalabilidad } from "@/components/secciones/Escalabilidad";
-import { Seguridad } from "@/components/secciones/Seguridad";
-import { Precios } from "@/components/secciones/Precios";
-import { ComparativaCompetencia } from "@/components/secciones/ComparativaCompetencia";
-import { Agendar } from "@/components/secciones/Agendar";
-import { Contacto } from "@/components/secciones/Contacto";
-import { Faq } from "@/components/secciones/Faq";
 import { CtaFinal } from "@/components/secciones/CtaFinal";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const locale: Locale = isLocale(lang) ? lang : "es";
+  const p = obtenerContenido(locale).paginas.inicio;
+
+  return {
+    title: { absolute: `Micliente · ${p.titulo}` },
+    description: p.descripcion,
+    alternates: {
+      canonical: urlAbsoluta("inicio", locale),
+      languages: alternativasDe("inicio"),
+    },
+    openGraph: {
+      type: "website",
+      siteName: "Micliente",
+      title: `Micliente · ${p.titulo}`,
+      description: p.descripcion,
+      url: urlAbsoluta("inicio", locale),
+      locale: localeTags[locale],
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Micliente" }],
+    },
+  };
+}
+
+/**
+ * Portada.
+ *
+ * Solo lo imprescindible para que alguien entienda en un minuto qué
+ * hace Micliente y decida a dónde ir. El detalle vive en las páginas
+ * de servicios, precios y por qué nosotros.
+ */
 export default async function Inicio({
   params,
 }: {
@@ -33,20 +57,7 @@ export default async function Inicio({
       <Hero locale={locale} c={c} />
       <Problema c={c} />
       <ComoFunciona c={c} />
-      <Servicios c={c} />
-      <Comisiones c={c} />
-      <Calculadora locale={locale} c={c} />
-      <Mercado c={c} />
-      <Industrias c={c} />
-      <ComparativaApi c={c} />
       <Diferenciadores c={c} />
-      <Escalabilidad c={c} />
-      <Seguridad c={c} />
-      <Precios locale={locale} c={c} />
-      <ComparativaCompetencia c={c} />
-      <Agendar locale={locale} c={c} />
-      <Contacto c={c} />
-      <Faq c={c} />
       <CtaFinal locale={locale} c={c} />
     </>
   );

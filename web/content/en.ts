@@ -13,8 +13,10 @@ export const en = {
   },
 
   nav: {
+    inicio: "Home",
     servicios: "Services",
     comoFunciona: "How it works",
+    porQue: "Why us",
     precios: "Pricing",
     preguntas: "FAQs",
     contacto: "Contact",
@@ -23,6 +25,52 @@ export const en = {
     cerrar: "Close",
     idioma: "Language",
     tema: "Switch theme",
+  },
+
+  /**
+   * Page-specific titles and descriptions.
+   * Each page targets a different set of Google searches.
+   */
+  paginas: {
+    inicio: {
+      titulo: "AI-powered WhatsApp automation and web development",
+      descripcion:
+        "AI handles your WhatsApp 24 hours a day, answers customers, takes orders, and sends them to your system. We also build catalog websites.",
+    },
+    servicios: {
+      titulo: "Services",
+      descripcion:
+        "AI-powered WhatsApp automation and catalog websites that work together as one sales system. Fully managed by us, with nothing for you to set up.",
+      encabezado: "What we do for your business",
+      intro:
+        "Two services that work better together. Your website showcases the catalog, the bot sells from it, and every order flows back into your system.",
+    },
+    precios: {
+      titulo: "Pricing",
+      descripcion:
+        "Flat, predictable pricing with no per-contact or per-agent fees. See what slow replies cost your business and how much you could recover.",
+      encabezado: "Clear pricing, no fine print",
+      intro:
+        "Competitors charge by contact or agent, so the better you do, the more you pay. We do not penalize your growth.",
+    },
+    porQue: {
+      titulo: "Why us",
+      descripcion:
+        "Explore the market data, see how our system scales when demand spikes, and learn how we protect your customers' information at every step.",
+      encabezado: "Why Micliente",
+      intro:
+        "See the market data, get an honest answer about what happens when thousands of customers reach out, and learn how we handle their data.",
+    },
+    preguntas: {
+      titulo: "Frequently asked questions",
+      descripcion:
+        "Learn how long setup takes, what Meta messaging costs, what happens when the AI cannot answer, and how our flexible monthly plans work.",
+    },
+    contacto: {
+      titulo: "Contact",
+      descripcion:
+        "Book a thirty-minute conversation or send us a message. No sales pitch, no obligation—just an honest look at what your business needs.",
+    },
   },
 
   hero: {

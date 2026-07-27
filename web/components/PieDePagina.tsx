@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { ruta } from "@/lib/rutas";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
 import s from "./PieDePagina.module.css";
@@ -18,17 +19,17 @@ export function PieDePagina({
     {
       titulo: c.footer.servicios,
       enlaces: [
-        { texto: e.whatsappIa, href: `/${locale}/#servicios` },
-        { texto: e.webCatalogo, href: `/${locale}/#servicios` },
-        { texto: e.precios, href: `/${locale}/#precios` },
+        { texto: e.whatsappIa, href: ruta("servicios", locale) },
+        { texto: e.webCatalogo, href: ruta("servicios", locale) },
+        { texto: e.precios, href: ruta("precios", locale) },
       ],
     },
     {
       titulo: c.footer.empresa,
       enlaces: [
-        { texto: e.comoFunciona, href: `/${locale}/#como-funciona` },
-        { texto: e.preguntas, href: `/${locale}/#preguntas` },
-        { texto: e.contacto, href: `/${locale}/#contacto` },
+        { texto: c.nav.porQue, href: ruta("porQue", locale) },
+        { texto: e.preguntas, href: ruta("preguntas", locale) },
+        { texto: e.contacto, href: ruta("contacto", locale) },
       ],
     },
     {
@@ -46,7 +47,9 @@ export function PieDePagina({
       <div className="contenedor">
         <div className={s.superior}>
           <div className={s.marca}>
-            <Logo variante="completo" alto={52} />
+            <Link href={ruta("inicio", locale)} aria-label={`Micliente — ${c.nav.inicio}`}>
+              <Logo variante="completo" alto={52} />
+            </Link>
             <p className={s.descripcion}>{c.footer.descripcion}</p>
           </div>
 

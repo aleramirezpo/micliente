@@ -1,0 +1,46 @@
+/* ============================================================
+   Encabezado de página interna
+   ============================================================ */
+
+.portada {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.25rem, 1rem + 5vw, 5rem) clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  border-bottom: 1px solid var(--borde);
+}
+
+/* Resplandor dorado muy tenue, el mismo recurso del hero pero más
+   contenido: aquí acompaña, no protagoniza. */
+.portada::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(60rem, 140%);
+  height: 22rem;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--oro) 13%, transparent) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.caja {
+  position: relative;
+  z-index: 1;
+}
+
+.titulo {
+  font-size: var(--t-2xl);
+  line-height: var(--interlinea-apretada);
+  max-width: 18ch;
+}
+
+.texto {
+  margin-top: var(--e-4);
+  font-size: var(--t-md);
+  color: var(--texto-suave);
+  max-width: 56ch;
+}

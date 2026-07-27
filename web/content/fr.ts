@@ -13,8 +13,10 @@ export const fr = {
   },
 
   nav: {
+    inicio: "Accueil",
     servicios: "Services",
     comoFunciona: "Comment ça marche",
+    porQue: "Pourquoi nous",
     precios: "Tarifs",
     preguntas: "Questions",
     contacto: "Contact",
@@ -23,6 +25,52 @@ export const fr = {
     cerrar: "Fermer",
     idioma: "Langue",
     tema: "Changer de thème",
+  },
+
+  /**
+   * Titres et descriptions propres à chaque page.
+   * Chacune cible des recherches différentes sur Google.
+   */
+  paginas: {
+    inicio: {
+      titulo: "Automatisation de WhatsApp par IA et développement web",
+      descripcion:
+        "L'IA répond sur WhatsApp 24 heures par jour, renseigne vos clients, prend leurs commandes et les transmet à votre système. Nous créons un site avec catalogue.",
+    },
+    servicios: {
+      titulo: "Services",
+      descripcion:
+        "Automatisation de WhatsApp par IA et sites web avec catalogue, réunis dans un même système de vente. Une solution clé en main, entièrement gérée pour vous.",
+      encabezado: "Ce que nous faisons pour votre entreprise",
+      intro:
+        "Deux services encore plus efficaces ensemble. Votre site présente le catalogue, le bot vend à partir de ce même catalogue et la commande revient dans votre système.",
+    },
+    precios: {
+      titulo: "Tarifs",
+      descripcion:
+        "Prix fixe et prévisible, sans frais par contact ni par agent. Découvrez ce que les réponses tardives coûtent à l'entreprise et ce que vous pourriez récupérer.",
+      encabezado: "Des tarifs clairs, sans petites lignes",
+      intro:
+        "La concurrence facture par contact ou par agent : plus votre activité se développe, plus vous payez. Nous ne pénalisons pas votre croissance.",
+    },
+    porQue: {
+      titulo: "Pourquoi nous",
+      descripcion:
+        "Découvrez les données du marché, comment notre système absorbe les pics de demande et comment nous protégeons les données de vos clients.",
+      encabezado: "Pourquoi Micliente",
+      intro:
+        "Les données du marché, une réponse honnête sur les milliers de clients simultanés et la manière dont nous protégeons leurs données.",
+    },
+    preguntas: {
+      titulo: "Questions fréquentes",
+      descripcion:
+        "Délais de mise en service, coûts des messages Meta, relais humain si l'IA ne sait pas répondre et modalités de résiliation : toutes les réponses.",
+    },
+    contacto: {
+      titulo: "Contact",
+      descripcion:
+        "Planifiez un échange de trente minutes ou écrivez-nous. Aucun discours commercial, aucun engagement : seulement un avis honnête sur vos besoins.",
+    },
   },
 
   hero: {

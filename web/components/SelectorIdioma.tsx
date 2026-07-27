@@ -1,15 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { locales, localeNames, localeShortNames, type Locale } from "@/lib/i18n";
+import { paginaDesdeDireccion, ruta } from "@/lib/rutas";
 import s from "./Controles.module.css";
 
 /**
  * Selector de idioma.
  *
  * Usa enlaces reales (<a href>) y no un manejador de JavaScript, para
- * que Google pueda rastrear las tres versiones del sitio. Eso es
- * justo lo que hace que el hreflang funcione.
+ * que Google pueda rastrear las tres versiones del sitio. Eso es lo
+ * que hace que el hreflang funcione.
+ *
+ * Cambia a la MISMA página en el otro idioma. Si desde "precios" se
+ * saltara a la portada inglesa, el visitante perdería el hilo y Google
+ * lo interpretaría como páginas distintas.
  */
 export function SelectorIdioma({
   locale,
@@ -20,6 +26,13 @@ export function SelectorIdioma({
 }) {
   const [abierto, setAbierto] = useState(false);
   const caja = useRef<HTMLDivElement>(null);
+  const rutaActual = usePathname();
+
+  // Última parte de la ruta: la dirección de la página actual.
+  const partes = rutaActual.split("/").filter(Boolean);
+  const direccion = partes[partes.length - 1];
+  const paginaActual =
+    (direccion && paginaDesdeDireccion(locale, direccion)) || "inicio";
 
   useEffect(() => {
     if (!abierto) return;
@@ -71,7 +84,7 @@ export function SelectorIdioma({
           {locales.map((l) => (
             <li key={l} role="none">
               <a
-                href={`/${l}/`}
+                href={ruta(paginaActual, l)}
                 role="menuitem"
                 className={`${s.opcion} ${l === locale ? s.opcionActiva : ""}`}
                 lang={l}

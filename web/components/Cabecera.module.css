@@ -101,6 +101,17 @@
   left: 0;
 }
 
+/* Página en la que se está: subrayado dorado permanente.
+   Sin esta señal el visitante no sabe dónde se encuentra. */
+.enlaceActivo {
+  color: var(--texto);
+}
+
+.enlaceActivo::after {
+  width: 100%;
+  left: 0;
+}
+
 .acciones {
   display: flex;
   align-items: center;
@@ -214,6 +225,14 @@
 .enlaceMovil:hover,
 .enlaceMovil:active {
   color: var(--acento);
+}
+
+/* En móvil la página actual se marca con un filete dorado a la
+   izquierda, que se lee de un vistazo. */
+.enlaceMovilActivo {
+  color: var(--acento);
+  border-inline-start: 3px solid var(--acento-fuerte);
+  padding-inline-start: var(--e-3);
 }
 
 .navMovil > :global(.boton) {

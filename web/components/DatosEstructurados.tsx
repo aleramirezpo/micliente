@@ -1,4 +1,5 @@
-import { SITE_URL, localeUrl, localeTags, type Locale } from "@/lib/i18n";
+import { SITE_URL, localeTags, type Locale } from "@/lib/i18n";
+import { urlAbsoluta } from "@/lib/rutas";
 import { obtenerContenido } from "@/lib/contenido";
 
 /**
@@ -21,7 +22,7 @@ export function DatosEstructurados({ locale }: { locale: Locale }) {
     "@id": `${SITE_URL}/#organizacion`,
     name: "Micliente",
     alternateName: "Micliente Soluciones Empresariales",
-    url: localeUrl(locale),
+    url: urlAbsoluta("inicio", locale),
     logo: `${SITE_URL}/marca/micliente-vertical.svg`,
     image: `${SITE_URL}/og-image.png`,
     description: c.meta.descripcion,
@@ -51,10 +52,18 @@ export function DatosEstructurados({ locale }: { locale: Locale }) {
     },
   };
 
+  /**
+   * Preguntas frecuentes.
+   *
+   * Google solo debe verlas asociadas a la página que realmente las
+   * contiene. Declararlas en todas las páginas sería declarar algo
+   * que no está ahí, y puede costar el fragmento destacado.
+   */
   const preguntas = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "@id": `${SITE_URL}/${locale}/#preguntas`,
+    "@id": `${urlAbsoluta("preguntas", locale)}#faq`,
+    url: urlAbsoluta("preguntas", locale),
     inLanguage: localeTags[locale],
     mainEntity: c.faq.lista.map((item) => ({
       "@type": "Question",
@@ -70,7 +79,7 @@ export function DatosEstructurados({ locale }: { locale: Locale }) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#sitio`,
-    url: localeUrl(locale),
+    url: urlAbsoluta("inicio", locale),
     name: "Micliente",
     inLanguage: localeTags[locale],
     publisher: { "@id": `${SITE_URL}/#organizacion` },

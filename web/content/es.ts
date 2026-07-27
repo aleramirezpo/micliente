@@ -17,8 +17,10 @@ export const es = {
   },
 
   nav: {
+    inicio: "Inicio",
     servicios: "Servicios",
     comoFunciona: "Cómo funciona",
+    porQue: "Por qué nosotros",
     precios: "Precios",
     preguntas: "Preguntas",
     contacto: "Contacto",
@@ -27,6 +29,53 @@ export const es = {
     cerrar: "Cerrar",
     idioma: "Idioma",
     tema: "Cambiar tema",
+  },
+
+  /**
+   * Título y descripción de cada página.
+   * Cada una tiene los suyos porque cada una compite por búsquedas
+   * distintas en Google.
+   */
+  paginas: {
+    inicio: {
+      titulo: "Automatización de WhatsApp con IA y desarrollo web",
+      descripcion:
+        "Atendemos tu WhatsApp con inteligencia artificial 24 horas: respondemos, tomamos el pedido y lo pasamos a tu sistema. También construimos tu página web con catálogo.",
+    },
+    servicios: {
+      titulo: "Servicios",
+      descripcion:
+        "Automatización de WhatsApp con inteligencia artificial y páginas web con catálogo, conectadas entre sí. Llave en mano, sin que toques nada.",
+      encabezado: "Lo que hacemos por tu negocio",
+      intro:
+        "Dos servicios que funcionan mejor juntos. Tu página muestra el catálogo, el bot vende con ese mismo catálogo y el pedido vuelve a tu sistema.",
+    },
+    precios: {
+      titulo: "Precios",
+      descripcion:
+        "Precio plano y predecible, sin cobrar por contacto ni por agente. Calcula cuánto pierdes hoy por no responder a tiempo.",
+      encabezado: "Precios claros, sin letra menuda",
+      intro:
+        "La competencia cobra por contacto o por agente, así que cuanto mejor te va, más pagas. Nosotros no castigamos tu crecimiento.",
+    },
+    porQue: {
+      titulo: "Por qué nosotros",
+      descripcion:
+        "El mercado, cómo escalamos cuando llegan muchos clientes y cómo protegemos los datos de tus clientes.",
+      encabezado: "Por qué Micliente",
+      intro:
+        "Los datos del mercado, la respuesta honesta a qué pasa si te llegan miles de clientes, y cómo tratamos los datos de los tuyos.",
+    },
+    preguntas: {
+      titulo: "Preguntas frecuentes",
+      descripcion:
+        "Cuánto tarda, cuánto cuesta la mensajería de Meta, qué pasa si la IA no sabe responder y si puedes cancelar cuando quieras.",
+    },
+    contacto: {
+      titulo: "Contacto",
+      descripcion:
+        "Agenda treinta minutos con nosotros o escríbenos. Sin presentación comercial y sin compromiso.",
+    },
   },
 
   hero: {

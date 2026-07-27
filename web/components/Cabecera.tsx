@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
+import { menuPrincipal, ruta, direccionDe } from "@/lib/rutas";
 import { SelectorIdioma } from "./SelectorIdioma";
 import { BotonTema } from "./BotonTema";
 import type { Locale } from "@/lib/i18n";
@@ -12,6 +14,7 @@ import s from "./Cabecera.module.css";
 export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
   const [abierto, setAbierto] = useState(false);
   const [desplazado, setDesplazado] = useState(false);
+  const rutaActual = usePathname();
 
   // Fondo sólido en la cabecera solo cuando se ha bajado un poco.
   useEffect(() => {
@@ -37,13 +40,15 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
     };
   }, [abierto]);
 
-  const enlaces = [
-    { href: `/${locale}/#servicios`, texto: c.nav.servicios },
-    { href: `/${locale}/#como-funciona`, texto: c.nav.comoFunciona },
-    { href: `/${locale}/#precios`, texto: c.nav.precios },
-    { href: `/${locale}/#preguntas`, texto: c.nav.preguntas },
-    { href: `/${locale}/#contacto`, texto: c.nav.contacto },
-  ];
+  // Cada entrada del menú es una página propia, con su URL.
+  const enlaces = menuPrincipal.map((pagina) => ({
+    pagina,
+    href: ruta(pagina, locale),
+    texto: c.nav[pagina],
+    // Se compara solo la última parte de la ruta para que funcione
+    // igual con o sin la subcarpeta de despliegue.
+    activo: rutaActual.includes(`/${direccionDe(pagina, locale)}`),
+  }));
 
   return (
     <header
@@ -51,9 +56,9 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
     >
       <div className={`contenedor ${s.barra}`}>
         <Link
-          href={`/${locale}/`}
+          href={ruta("inicio", locale)}
           className={s.marca}
-          aria-label="Micliente — inicio"
+          aria-label={`Micliente — ${c.nav.inicio}`}
           onClick={() => setAbierto(false)}
         >
           {/*
@@ -69,7 +74,12 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
         {/* Navegación de escritorio */}
         <nav className={s.navEscritorio} aria-label={c.nav.menu}>
           {enlaces.map((e) => (
-            <Link key={e.href} href={e.href} className={s.enlace}>
+            <Link
+              key={e.pagina}
+              href={e.href}
+              className={`${s.enlace} ${e.activo ? s.enlaceActivo : ""}`}
+              aria-current={e.activo ? "page" : undefined}
+            >
               {e.texto}
             </Link>
           ))}
@@ -79,7 +89,7 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
           <SelectorIdioma locale={locale} etiqueta={c.nav.idioma} />
           <BotonTema etiqueta={c.nav.tema} />
           <Link
-            href={`/${locale}/#agendar`}
+            href={ruta("contacto", locale)}
             className={`boton boton--primario ${s.ctaEscritorio}`}
           >
             {c.nav.agendar}
@@ -108,18 +118,26 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
         hidden={!abierto}
       >
         <nav className={s.navMovil} aria-label={c.nav.menu}>
+          <Link
+            href={ruta("inicio", locale)}
+            className={s.enlaceMovil}
+            onClick={() => setAbierto(false)}
+          >
+            {c.nav.inicio}
+          </Link>
           {enlaces.map((e) => (
             <Link
-              key={e.href}
+              key={e.pagina}
               href={e.href}
-              className={s.enlaceMovil}
+              className={`${s.enlaceMovil} ${e.activo ? s.enlaceMovilActivo : ""}`}
+              aria-current={e.activo ? "page" : undefined}
               onClick={() => setAbierto(false)}
             >
               {e.texto}
             </Link>
           ))}
           <Link
-            href={`/${locale}/#agendar`}
+            href={ruta("contacto", locale)}
             className="boton boton--primario"
             onClick={() => setAbierto(false)}
           >
