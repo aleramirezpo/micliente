@@ -16,25 +16,32 @@ export function Comisiones({ c }: { c: Contenido }) {
         <div className={s.rejilla}>
           <article className={`revelar ${s.ejemplo}`}>
             <h3 className={s.tituloEjemplo}>{comisiones.ejemplo.titulo}</h3>
-            <div className="tabla-scroll">
-              <table className="tabla">
-                <tbody>
-                  {comisiones.ejemplo.filas.map((fila) => (
-                    <tr
-                      className={
-                        "negativo" in fila && fila.negativo
-                          ? s.negativa
-                          : undefined
-                      }
-                      key={fila.concepto}
-                    >
-                      <th scope="row">{fila.concepto}</th>
-                      <td>{fila.valor}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+
+            {/*
+              Lista de definición en lugar de tabla.
+              Una tabla obliga a un ancho mínimo y en móvil hay que
+              desplazarla de lado. Aquí cada fila es concepto y valor,
+              y en pantallas estrechas el valor cae debajo por sí solo,
+              sin que nada se salga. El cuadro siempre se ve entero.
+            */}
+            <dl className={s.cuenta}>
+              {comisiones.ejemplo.filas.map((fila, i) => {
+                const esNegativa = "negativo" in fila && fila.negativo;
+                const esTotal = i === comisiones.ejemplo.filas.length - 1;
+                return (
+                  <div
+                    key={fila.concepto}
+                    className={`${s.fila} ${esNegativa ? s.negativa : ""} ${
+                      esTotal ? s.total : ""
+                    }`}
+                  >
+                    <dt className={s.concepto}>{fila.concepto}</dt>
+                    <dd className={s.valor}>{fila.valor}</dd>
+                  </div>
+                );
+              })}
+            </dl>
+
             <p className={s.cierre}>{comisiones.ejemplo.cierre}</p>
           </article>
 

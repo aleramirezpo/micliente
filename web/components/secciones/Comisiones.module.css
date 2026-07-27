@@ -1,7 +1,7 @@
 /* ============================================================
    Comisiones
-   Sección oscura de alto contraste. La tabla conserva su propio
-   desplazamiento horizontal en pantallas estrechas.
+   Sección oscura de alto contraste. El cuadro del ejemplo se ve
+   siempre entero: no hay que desplazarlo en ningún tamaño.
    ============================================================ */
 
 .seccion {
@@ -36,25 +36,69 @@
   margin-bottom: var(--e-5);
 }
 
-.ejemplo th {
+/* ---------- El cuadro de la cuenta ---------- */
+
+.cuenta {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-1) var(--e-4);
+  padding-block: var(--e-3);
+  border-bottom: thin solid var(--grafito-borde);
+}
+
+.fila:last-child {
+  border-bottom: none;
+}
+
+.concepto {
+  color: color-mix(in srgb, var(--marfil) 82%, transparent);
+  font-size: var(--t-sm);
+  /* Deja que el concepto se encoja y el valor nunca se parta */
+  flex: 1 1 9rem;
+  min-width: 0;
+}
+
+.valor {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--peso-medio);
+  font-size: var(--t-md);
   color: var(--marfil);
-  font-weight: var(--peso-normal);
-  text-transform: none;
-  letter-spacing: normal;
-  white-space: normal;
-}
-
-.ejemplo td {
-  color: var(--oro-claro);
-  font-family: var(--fuente-mono);
-  font-weight: var(--peso-fuerte);
-  text-align: right;
   white-space: nowrap;
+  text-align: right;
+  flex: 0 0 auto;
 }
 
-.ejemplo .negativa th,
-.ejemplo .negativa td {
+/* La fila de la comisión, en rojo: es la que duele */
+.negativa .concepto,
+.negativa .valor {
   color: var(--error);
+}
+
+/* La última fila es el resultado: se separa y se destaca */
+.total {
+  margin-top: var(--e-2);
+  padding-top: var(--e-4);
+  border-top: 2px solid var(--oro);
+  border-bottom: none;
+}
+
+.total .concepto {
+  color: var(--marfil);
+  font-weight: var(--peso-medio);
+}
+
+.total .valor {
+  color: var(--oro-claro);
+  font-size: var(--t-lg);
 }
 
 .cierre {
@@ -63,12 +107,13 @@
   margin-top: var(--e-5);
 }
 
+/* ---------- El dato destacado ---------- */
+
 .dato {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: var(--e-6);
-  box-shadow: var(--sombra-oro);
 }
 
 .cifra {
@@ -77,7 +122,7 @@
 }
 
 .textoDato {
-  color: color-mix(in srgb, var(--marfil) 78%, transparent);
+  color: color-mix(in srgb, var(--marfil) 80%, transparent);
   font-size: var(--t-md);
   max-width: var(--ancho-texto);
 }

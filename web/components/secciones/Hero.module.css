@@ -12,19 +12,18 @@
   padding-block: clamp(1.5rem, 0.5rem + 4vw, 5.5rem) var(--seccion-y);
 }
 
-/* Resplandor dorado muy tenue tras el texto. Es el único adorno
-   de fondo del sitio: aporta calidez sin distraer. */
+/* Fondo del hero.
+   Antes había aquí un resplandor dorado radial. Se quitó: ese recurso
+   es el sello de las plantillas genéricas y abarataba el conjunto.
+   En su lugar, un degradado vertical casi imperceptible que separa el
+   hero del resto sin llamar la atención. */
 .resplandor {
   position: absolute;
-  top: -18%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(80rem, 150%);
-  height: 34rem;
-  background: radial-gradient(
-    ellipse at center,
-    color-mix(in srgb, var(--oro) 16%, transparent) 0%,
-    transparent 68%
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--fondo-elevado) 0%,
+    var(--fondo) 100%
   );
   pointer-events: none;
   z-index: 0;

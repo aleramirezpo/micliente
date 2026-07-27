@@ -17,33 +17,35 @@
   --marfil-puro: #fbfaf6;
   --blanco: #ffffff;
 
-  /* Tonos claros de apoyo: dan variedad sin romper la elegancia */
-  --marfil-calido: #faf7f0;
-  --arena: #efe9dc;
-  --champan-suave: #f7f0e0;
-  --nube: #f2f4f6;
+  /* Tonos claros de apoyo.
+     Son grises cálidos NEUTROS, no cremas amarillentas: un fondo con
+     tinte dorado abarata el conjunto y delata una paleta improvisada.
+     El dorado se reserva para los acentos, no para los fondos. */
+  --papel: #fcfcfb;
+  --lino: #f4f3f0;
+  --piedra: #eceae5;
+  --nube: #f1f3f5;
 
   /* ---------- Roles semánticos (tema claro, el de por defecto) ---------- */
-  --fondo: var(--marfil-calido);
+  --fondo: var(--papel);
   --fondo-elevado: var(--blanco);
-  --fondo-tinte: var(--champan-suave); /* franjas cálidas de descanso visual */
-  --fondo-frio: var(--nube); /* alternativa fría, para no cansar */
+  --fondo-tinte: var(--lino); /* franja cálida de descanso visual */
+  --fondo-frio: var(--nube); /* franja fría, para alternar el ritmo */
   --fondo-inverso: var(--grafito);
-  --texto: var(--grafito);
-  --texto-suave: #545b65;
-  /* Oscurecidos hasta alcanzar 4,5:1 sobre el fondo claro, que es el
-     mínimo que exige la accesibilidad para texto normal. Los valores
-     anteriores se veían elegantes pero eran ilegibles para mucha gente. */
-  --texto-tenue: #656c76;
+  /* Tinta más profunda que el grafito de marca: sobre fondo claro gana
+     nitidez y hace que el texto se lea sin esfuerzo. */
+  --texto: #14161a;
+  --texto-suave: #474d55;
+  --texto-tenue: #626871;
   --texto-inverso: var(--marfil);
-  --acento: #7e6330;
+  /* Dorado oscuro para textos pequeños: 5,4:1 sobre el fondo claro. */
+  --acento: #7a5d2b;
   --acento-fuerte: var(--oro);
-  /* Dorado para cifras grandes sobre fondo claro. El dorado de marca
-     se queda en 2,4:1 y el mínimo para texto grande es 3:1. Este llega
-     a 3,4:1 sin perder el carácter dorado. */
-  --acento-cifra: #a67f30;
-  --borde: #e6e0d3;
-  --borde-fuerte: #cec8ba;
+  /* Dorado para cifras grandes sobre fondo claro. El de marca se queda
+     en 2,4:1 y el mínimo para texto grande es 3:1. */
+  --acento-cifra: #9c7629;
+  --borde: #e3e1db;
+  --borde-fuerte: #c6c3bb;
 
   /* Estados */
   --exito: #2f6f4f;
@@ -112,11 +114,14 @@
   --r-xl: 22px;
   --r-full: 999px;
 
-  /* ---------- Sombras: discretas, nunca dramáticas ---------- */
-  --sombra-sm: 0 1px 2px rgb(26 29 33 / 0.05);
-  --sombra-md: 0 4px 16px rgb(26 29 33 / 0.07);
-  --sombra-lg: 0 12px 40px rgb(26 29 33 / 0.10);
-  --sombra-oro: 0 6px 24px rgb(198 161 91 / 0.22);
+  /* ---------- Sombras: discretas, nunca dramáticas ----------
+     Sin resplandores de color. Una sombra dorada bajo un botón es el
+     recurso más delator de una plantilla genérica; una sombra neutra
+     y sutil transmite oficio. */
+  --sombra-sm: 0 1px 2px rgb(20 22 26 / 0.05);
+  --sombra-md: 0 2px 10px rgb(20 22 26 / 0.06);
+  --sombra-lg: 0 10px 34px rgb(20 22 26 / 0.09);
+  --sombra-oro: 0 2px 10px rgb(20 22 26 / 0.10);
 
   /* ---------- Movimiento ----------
      Sutil y breve. La animación acompaña, no protagoniza. */
@@ -141,14 +146,16 @@
    recuerda entre visitas.
    ============================================================ */
 :root[data-theme="dark"] {
-  --fondo: var(--grafito);
-  --fondo-elevado: var(--grafito-suave);
-  --fondo-tinte: #22262c;
-  --fondo-frio: #202429;
+  --fondo: #15171b;
+  --fondo-elevado: #1c1f24;
+  --fondo-tinte: #202329;
+  --fondo-frio: #1a1d22;
   --fondo-inverso: var(--marfil);
-  --texto: var(--marfil);
-  --texto-suave: #aeb4bd;
-  --texto-tenue: #838a94;
+  /* Blanco roto neutro en vez del marfil de marca: sobre fondo oscuro
+     un blanco amarillento parece una pantalla mal calibrada. */
+  --texto: #eceef1;
+  --texto-suave: #b3b9c2;
+  --texto-tenue: #8b929c;
   --texto-inverso: var(--grafito);
   --acento: var(--oro-claro);
   --acento-fuerte: var(--oro);
