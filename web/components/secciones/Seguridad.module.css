@@ -4,11 +4,19 @@
    y una rejilla que crece sin imponer anchos fijos.
    ============================================================ */
 
+/* Cada punto es un título corto y una frase: caben dos por fila en
+   móvil, lo que reduce la sección de seis filas a tres. */
+/* 9,5 rem y no más: con 10,5 rem los dos bloques sumaban 360 px y el
+   contenedor de un móvil de 390 px solo mide 335 px, así que caía a
+   una sola columna. */
 .puntos {
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, calc(var(--e-10) * 2)), 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+}
+
+@media (min-width: 48rem) {
+  .puntos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .punto {

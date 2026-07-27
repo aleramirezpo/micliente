@@ -4,11 +4,20 @@
    tarjetas demasiado estrechas en cualquier orientación.
    ============================================================ */
 
+/* Las tarjetas de cifras son compactas: una cifra grande y dos líneas.
+   En móvil caben de dos en dos, lo que reduce esta sección de seis
+   filas a tres. Con el mínimo anterior (16 rem = 256 px) era imposible
+   que entraran dos en una pantalla de 390 px. */
 .datos {
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, calc(var(--e-10) * 2)), 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+}
+
+/* En pantallas grandes se limita a tres por fila para que no queden
+   demasiado estrechas. */
+@media (min-width: 48rem) {
+  .datos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .dato {

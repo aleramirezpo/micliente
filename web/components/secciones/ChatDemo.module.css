@@ -10,12 +10,28 @@
 
 /* ---------- Selector de sector ---------- */
 
+/* En móvil los sectores van en UNA sola fila que se desplaza.
+   Antes se partían en dos filas y alargaban el hero sin necesidad.
+   El cuarto botón asomando por el borde indica que hay más. */
 .sectores {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--e-2);
   margin-bottom: var(--e-4);
-  justify-content: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+  /* Sangrado al canal para que el primero no quede pegado al borde */
+  margin-inline: calc(var(--canal) * -1);
+  padding-inline: var(--canal);
+}
+
+.sectores::-webkit-scrollbar {
+  display: none;
+}
+
+.sector {
+  flex: 0 0 auto;
 }
 
 .sector {
@@ -57,9 +73,11 @@
   border-radius: var(--r-xl);
   padding: var(--e-4);
   box-shadow: var(--sombra-lg);
-  /* Alto fijo para que la página no dé saltos al aparecer mensajes.
-     Es el detalle que evita el "salto de contenido" que penaliza Google. */
-  height: 27rem;
+  /* Alto fijo para que la página no dé saltos al aparecer mensajes:
+     es lo que evita el "salto de contenido" que penaliza Google.
+     En móvil se limita también por altura de pantalla, porque 27 rem
+     fijos (432 px) se comían casi toda la vista de un teléfono. */
+  height: min(22rem, 52svh);
   display: flex;
   flex-direction: column;
 }
@@ -208,23 +226,31 @@
 
 /* ---------- Móviles pequeños ---------- */
 @media (max-width: 24rem) {
-  .telefono {
-    height: 25rem;
-  }
   .sector {
     padding-inline: var(--e-3);
+    font-size: 0.72rem;
   }
 }
 
-/* ---------- Escritorio ---------- */
+/* ---------- iPad y escritorio ---------- */
+@media (min-width: 48rem) {
+  .telefono {
+    height: 27rem;
+  }
+}
+
 @media (min-width: 62rem) {
   .envoltura {
     margin-inline: 0;
     margin-left: auto;
     max-width: 26rem;
   }
+  /* Con espacio de sobra vuelven a repartirse en varias filas */
   .sectores {
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    margin-inline: 0;
+    padding-inline: 0;
   }
 }
 

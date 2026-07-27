@@ -66,7 +66,9 @@
   --t-lg: clamp(1.32rem, 1.20rem + 0.60vw, 1.70rem);
   --t-xl: clamp(1.65rem, 1.40rem + 1.20vw, 2.40rem);
   --t-2xl: clamp(2.05rem, 1.60rem + 2.20vw, 3.40rem);
-  --t-3xl: clamp(2.45rem, 1.70rem + 3.60vw, 4.60rem);
+  /* El mínimo se bajó tras verlo en un móvil real: a 2,45rem el
+     titular ocupaba cuatro líneas y 185 px de alto. */
+  --t-3xl: clamp(2.05rem, 1.45rem + 3.20vw, 4.40rem);
 
   --peso-normal: 400;
   --peso-medio: 500;
@@ -93,8 +95,10 @@
   --e-9: 6rem;
   --e-10: 8rem;
 
-  /* Separación vertical entre secciones, fluida */
-  --seccion-y: clamp(3.5rem, 2rem + 7vw, 7.5rem);
+  /* Separación vertical entre secciones, fluida.
+     El mínimo se ajustó tras medir en móvil: con 3,5 rem, las 18
+     secciones sumaban más de 2.000 px solo de aire. */
+  --seccion-y: clamp(2.6rem, 1.2rem + 6vw, 7rem);
 
   /* ---------- Disposición ---------- */
   --ancho-max: 1200px;

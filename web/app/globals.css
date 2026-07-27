@@ -313,14 +313,26 @@ a {
   margin-top: var(--e-6);
 }
 
-/* En móviles estrechos los botones ocupan todo el ancho */
-@media (max-width: 26rem) {
+/* Los botones ocupan todo el ancho solo en pantallas MUY estrechas.
+   Antes el umbral era 26 rem y en un móvil de 390 px salían dos
+   botones gigantes apilados que dominaban la pantalla. */
+@media (max-width: 22rem) {
   .boton {
     width: 100%;
   }
   .grupo-botones {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+/* Entre 22 y 30 rem los botones se reparten el ancho a partes
+   iguales y caben en una sola fila. */
+@media (min-width: 22.01rem) and (max-width: 30rem) {
+  .grupo-botones > .boton {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: var(--e-3);
   }
 }
 
