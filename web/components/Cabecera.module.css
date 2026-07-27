@@ -5,24 +5,26 @@
      >= 60rem         -> iPad horizontal y escritorio: menú completo
    ============================================================ */
 
+/* La barra superior está siempre bien definida, no solo al bajar.
+   Una cabecera transparente sobre el hero se lee mal y hace dudar de
+   dónde termina la navegación y dónde empieza el contenido. */
 .cabecera {
   position: sticky;
   top: 0;
   z-index: var(--z-cabecera);
+  background: var(--fondo-elevado);
+  border-bottom: 1px solid var(--borde-fuerte);
   transition:
-    background-color var(--t-media) var(--curva),
-    border-color var(--t-media) var(--curva),
-    backdrop-filter var(--t-media) var(--curva);
-  border-bottom: 1px solid transparent;
+    box-shadow var(--t-media) var(--curva),
+    border-color var(--t-media) var(--curva);
   /* Respeta la muesca del iPhone cuando el móvil está en horizontal */
   padding-top: env(safe-area-inset-top);
 }
 
+/* Al desplazarse, una sombra sutil la despega del contenido */
 .solida {
-  background: color-mix(in srgb, var(--fondo) 88%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom-color: var(--borde);
+  box-shadow: var(--sombra-md);
+  border-bottom-color: var(--borde-fuerte);
 }
 
 .barra {
@@ -70,7 +72,10 @@
 
 .enlace {
   font-size: var(--t-sm);
-  color: var(--texto-suave);
+  /* Color de texto pleno, no atenuado: son los enlaces principales
+     del sitio y deben leerse sin esfuerzo. */
+  color: var(--texto);
+  font-weight: var(--peso-medio);
   padding: var(--e-2) 0;
   position: relative;
   transition: color var(--t-media) var(--curva);
@@ -93,7 +98,7 @@
 }
 
 .enlace:hover {
-  color: var(--texto);
+  color: var(--acento);
 }
 
 .enlace:hover::after {

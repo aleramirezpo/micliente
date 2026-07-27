@@ -9,10 +9,22 @@
   border-bottom: 1px solid var(--borde);
 }
 
-/* Fondo sobrio: un plano claro que separa el encabezado del contenido.
-   Sin resplandores de color. */
-.portada {
-  background: var(--fondo-elevado);
+/* Resplandor dorado muy tenue, el mismo recurso del hero pero más
+   contenido: aquí acompaña, no protagoniza. */
+.portada::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(60rem, 140%);
+  height: 22rem;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--oro) 13%, transparent) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
 }
 
 .caja {

@@ -155,9 +155,9 @@ a {
   background: var(--grafito);
   color: var(--marfil);
 
-  --texto: #eceef1;
-  --texto-suave: #b9bfc8;
-  --texto-tenue: #9ba2ac;
+  --texto: var(--marfil);
+  --texto-suave: #b8bec7;
+  --texto-tenue: #9aa2ac;
   --texto-inverso: var(--grafito);
   --acento: var(--oro-claro);
   --acento-fuerte: var(--oro-claro);

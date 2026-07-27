@@ -16,9 +16,11 @@
   height: 2.75rem;
   padding-inline: var(--e-2);
   background: transparent;
-  border: 1px solid var(--borde);
+  /* Borde y texto más marcados: en la barra superior estos controles
+     deben verse claramente, no adivinarse. */
+  border: 1px solid var(--borde-fuerte);
   border-radius: var(--r-md);
-  color: var(--texto-suave);
+  color: var(--texto);
   cursor: pointer;
   transition:
     border-color var(--t-media) var(--curva),
