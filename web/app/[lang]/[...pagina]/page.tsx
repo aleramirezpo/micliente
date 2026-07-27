@@ -25,33 +25,37 @@ import { Agendar } from "@/components/secciones/Agendar";
 import { Contacto } from "@/components/secciones/Contacto";
 import { CtaFinal } from "@/components/secciones/CtaFinal";
 import { PortadaPagina } from "@/components/PortadaPagina";
+import { TextoLegal } from "@/components/TextoLegal";
 
 /**
  * Genera una versión estática por cada combinación de idioma y página.
- * Son 15 en total: cinco páginas por tres idiomas.
+ *
+ * La ruta es comodín porque las páginas legales viven bajo `legal/`,
+ * es decir con dos segmentos.
  */
 export function generateStaticParams() {
   return todasLasRutas();
 }
 
 /** Traduce los parámetros de la URL a un idioma y una página válidos. */
-async function resolver(params: Promise<{ lang: string; pagina: string }>) {
+async function resolver(params: Promise<{ lang: string; pagina: string[] }>) {
   const { lang, pagina } = await params;
   const locale: Locale = isLocale(lang) ? lang : "es";
-  const clave = paginaDesdeDireccion(locale, pagina);
+  const clave = paginaDesdeDireccion(locale, (pagina ?? []).join("/"));
   return { locale, clave };
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ lang: string; pagina: string }>;
+  params: Promise<{ lang: string; pagina: string[] }>;
 }): Promise<Metadata> {
   const { locale, clave } = await resolver(params);
   if (!clave) return {};
 
   const c = obtenerContenido(locale);
   const p = c.paginas[clave as keyof typeof c.paginas];
+  const esLegal = ["privacidad", "terminos", "datos"].includes(clave);
 
   return {
     title: { absolute: `${p.titulo} · Micliente` },
@@ -60,6 +64,9 @@ export async function generateMetadata({
       canonical: urlAbsoluta(clave, locale),
       languages: alternativasDe(clave),
     },
+    // Las páginas legales no aportan nada en los resultados de búsqueda
+    // y diluyen la autoridad del sitio: se sirven pero no se indexan.
+    robots: esLegal ? { index: false, follow: true } : undefined,
     openGraph: {
       type: "website",
       siteName: "Micliente",
@@ -67,7 +74,9 @@ export async function generateMetadata({
       description: p.descripcion,
       url: urlAbsoluta(clave, locale),
       locale: localeTags[locale],
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Micliente" }],
+      images: [
+        { url: "/og-image.png", width: 1200, height: 630, alt: "Micliente" },
+      ],
     },
   };
 }
@@ -75,7 +84,7 @@ export async function generateMetadata({
 export default async function PaginaInterna({
   params,
 }: {
-  params: Promise<{ lang: string; pagina: string }>;
+  params: Promise<{ lang: string; pagina: string[] }>;
 }) {
   const { locale, clave } = await resolver(params);
   if (!clave) notFound();
@@ -131,9 +140,21 @@ export default async function PaginaInterna({
         </>
       )}
 
-      {/* La llamada final sobra en contacto: ya se está en el sitio
-          donde esa llamada llevaría. */}
-      {pagina !== "contacto" && <CtaFinal locale={locale} c={c} />}
+      {pagina === "privacidad" && (
+        <TextoLegal c={c} secciones={c.legal.privacidad.secciones} />
+      )}
+      {pagina === "terminos" && (
+        <TextoLegal c={c} secciones={c.legal.terminos.secciones} />
+      )}
+      {pagina === "datos" && (
+        <TextoLegal c={c} secciones={c.legal.datos.secciones} />
+      )}
+
+      {/* La llamada final sobra en contacto (ya se está ahí) y en las
+          páginas legales, donde sería fuera de lugar. */}
+      {!["contacto", "privacidad", "terminos", "datos"].includes(pagina) && (
+        <CtaFinal locale={locale} c={c} />
+      )}
     </>
   );
 }

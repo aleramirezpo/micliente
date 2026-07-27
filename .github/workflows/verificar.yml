@@ -60,8 +60,19 @@ jobs:
       - name: Auditar comportamiento en móvil e iPad
         run: node scripts/auditar-responsive.mjs
 
+      # Se compila con la subcarpeta de GitHub Pages para que la
+      # comprobación de enlaces reproduzca las condiciones reales.
       - name: Compilar el sitio estático
+        env:
+          NEXT_PUBLIC_BASE_PATH: /micliente
         run: npm run build
+
+      # Comprueba que cada enlace del HTML apunte a un archivo que
+      # existe. Nace de un fallo real: la subcarpeta se duplicaba y
+      # todos los enlaces del menú daban "página no encontrada".
+      # Probar las direcciones a mano NO detecta eso.
+      - name: Comprobar que ningún enlace interno está roto
+        run: node scripts/verificar-enlaces.mjs /micliente
 
       - name: Confirmar que se generaron los tres idiomas
         run: |

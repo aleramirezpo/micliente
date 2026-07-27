@@ -71,6 +71,155 @@ export const fr = {
       descripcion:
         "Planifiez un échange de trente minutes ou écrivez-nous. Aucun discours commercial, aucun engagement : seulement un avis honnête sur vos besoins.",
     },
+    privacidad: {
+      titulo: "Politique de confidentialité",
+      descripcion:
+        "Découvrez quelles données personnelles nous recueillons, pourquoi nous les utilisons, combien de temps nous les conservons et quels sont vos droits.",
+    },
+    terminos: {
+      titulo: "Conditions générales",
+      descripcion:
+        "Consultez les conditions qui régissent l'utilisation de ce site et la souscription aux services d'automatisation WhatsApp et web de Micliente.",
+    },
+    datos: {
+      titulo: "Traitement des données personnelles",
+      descripcion:
+        "Consultez notre politique de traitement des données conforme à la loi colombienne 1581 de 2012, vos droits et la façon de les exercer.",
+    },
+  },
+
+  /**
+   * Textes juridiques.
+   *
+   * Rédigés conformément à la loi colombienne 1581 de 2012 (données
+   * personnelles) et à la loi colombienne 1480 de 2011 (commerce
+   * électronique). Les informations sur l'entreprise restent à compléter.
+   */
+  legal: {
+    avisoBorrador:
+      "Document en cours de préparation. Il doit être examiné par un avocat et complété avec les informations de l'entreprise avant le début de toute activité commerciale.",
+    actualizado: "Dernière mise à jour",
+    fecha: "juillet 2026",
+    identificacion: {
+      titulo: "Informations sur l'entreprise",
+      razonSocial: "Raison sociale",
+      razonSocialValor: "Micliente S.A.S. (en cours de constitution)",
+      nit: "NIT",
+      nitValor: "En attente d'attribution",
+      domicilio: "Siège social",
+      domicilioValor: "Colombie",
+      correo: "E-mail de contact",
+      correoValor: "hola@micliente.co",
+    },
+    sic: {
+      texto:
+        "Vous pouvez déposer une réclamation auprès de la Superintendencia de Industria y Comercio (autorité colombienne chargée de la protection des consommateurs et des données personnelles).",
+      enlace: "Accéder à la Superintendencia de Industria y Comercio",
+    },
+    privacidad: {
+      secciones: [
+        {
+          t: "Données que nous recueillons",
+          p: "Nous recueillons uniquement les données que vous nous fournissez volontairement dans le formulaire de contact : nom, entreprise, adresse e-mail, numéro de téléphone et contenu de votre message. Aucune autre donnée.",
+        },
+        {
+          t: "Utilisation de vos données",
+          p: "Nous les utilisons uniquement pour répondre à votre demande et, si vous décidez de faire appel à nous, pour fournir le service convenu. Nous ne les traitons à aucune autre fin.",
+        },
+        {
+          t: "Ce que nous ne faisons PAS de vos données",
+          p: "Nous ne les vendons pas. Nous ne les transmettons pas à des tiers à des fins commerciales. Nous ne les utilisons pas pour promouvoir d'autres entreprises.",
+        },
+        {
+          t: "Cookies et suivi",
+          p: "Ce site n'utilise ni cookies de suivi ni outils d'analyse tiers. Aucun profilage publicitaire ni aucune collecte invisible de données ne sont effectués.",
+        },
+        {
+          t: "Durée de conservation",
+          p: "Nous les conservons pendant la relation commerciale et durant les délais imposés par la loi. Vous pouvez demander leur suppression à tout moment.",
+        },
+        {
+          t: "Vos droits",
+          p: "Vous pouvez consulter, mettre à jour, rectifier et supprimer vos données, ainsi que retirer le consentement que vous nous avez accordé. Il suffit d'écrire à hola@micliente.co. Nous répondrons dans les délais légaux.",
+        },
+      ],
+    },
+    terminos: {
+      secciones: [
+        {
+          t: "Objet",
+          p: "Les présentes conditions régissent l'utilisation de ce site et la souscription aux services d'automatisation de WhatsApp et de développement web proposés par Micliente.",
+        },
+        {
+          t: "Les services font l'objet d'un contrat écrit",
+          p: "Les informations de ce site sont données à titre indicatif et ne constituent pas une offre ferme. Le périmètre, le prix et les conditions de chaque projet sont fixés dans un contrat signé par les deux parties.",
+        },
+        {
+          t: "Prix",
+          p: "Les prix publiés sont indicatifs, libellés en pesos colombiens et hors taxes, sauf indication contraire. Les frais de messagerie de Meta sont facturés séparément, au prix coûtant et sans marge de notre part.",
+        },
+        {
+          t: "Dépendance à des services tiers",
+          p: "Les services reposent sur des plateformes tierces, principalement la WhatsApp Business Platform de Meta. Les modifications de prix ou de politiques, les suspensions de compte et les interruptions de ces plateformes échappent à notre contrôle et ne peuvent nous être imputées.",
+        },
+        {
+          t: "Utilisation de l'intelligence artificielle",
+          p: "Les assistants que nous mettons en œuvre utilisent des modèles d'intelligence artificielle et peuvent commettre des erreurs. Un transfert vers une personne est donc toujours configuré. Le client doit vérifier les informations critiques avant de prendre des engagements envers ses propres clients.",
+        },
+        {
+          t: "Propriété intellectuelle",
+          p: "Les contenus de ce site appartiennent à Micliente. La propriété des travaux livrés à chaque client est définie dans son contrat.",
+        },
+        {
+          t: "Droit de rétractation",
+          p: "Pour les contrats conclus à distance, le droit de rétractation s'applique conformément à l'article 47 de la loi 1480 de 2011.",
+        },
+        {
+          t: "Droit applicable",
+          p: "Les présentes conditions sont régies par le droit colombien. Tout litige est soumis aux juridictions compétentes de Colombie.",
+        },
+      ],
+    },
+    datos: {
+      secciones: [
+        {
+          t: "Cadre juridique",
+          p: "Cette politique est établie conformément à la loi colombienne 1581 de 2012, au décret 1377 de 2013 et aux autres dispositions colombiennes relatives à la protection des données personnelles.",
+        },
+        {
+          t: "Responsable du traitement",
+          p: "Micliente S.A.S. est responsable du traitement des données reçues par l'intermédiaire de ce site. Vous pouvez nous contacter à hola@micliente.co.",
+        },
+        {
+          t: "Lorsque nous exploitons le compte WhatsApp d'un client",
+          p: "Dans ce cas, l'entreprise cliente est responsable du traitement des données de ses propres clients et Micliente agit en qualité de sous-traitant. Cette relation, ses finalités et ses limites sont consignées par écrit dans le contrat de service.",
+        },
+        {
+          t: "Finalités",
+          p: "Répondre aux demandes d'information, élaborer des propositions commerciales, fournir les services souscrits, facturer et respecter les obligations légales.",
+        },
+        {
+          t: "Consentement",
+          p: "En envoyant le formulaire, vous consentez de manière préalable, expresse et éclairée au traitement de vos données aux fins décrites. Vous pouvez retirer ce consentement à tout moment.",
+        },
+        {
+          t: "Droits de la personne concernée",
+          p: "Vous pouvez consulter, mettre à jour et rectifier vos données ; demander la preuve du consentement ; être informé de leur utilisation ; déposer une plainte auprès de la Superintendencia de Industria y Comercio ; retirer le consentement et demander la suppression des données lorsque cela est possible.",
+        },
+        {
+          t: "Comment exercer vos droits",
+          p: "Écrivez à hola@micliente.co. Les demandes sont traitées dans un délai maximal de dix jours ouvrables et les réclamations dans un délai de quinze jours ouvrables, conformément aux délais de la loi colombienne 1581.",
+        },
+        {
+          t: "Sécurité",
+          p: "Nous appliquons des mesures administratives, techniques et juridiques raisonnables pour protéger les données contre la perte, l'accès non autorisé, l'altération ou l'utilisation frauduleuse.",
+        },
+        {
+          t: "Transfert international",
+          p: "Certains prestataires technologiques auxquels nous faisons appel, notamment pour l'intelligence artificielle et l'hébergement, opèrent hors de Colombie. En consentant au traitement, vous acceptez ce transfert international, effectué auprès de prestataires offrant des niveaux de protection adéquats.",
+        },
+      ],
+    },
   },
 
   hero: {

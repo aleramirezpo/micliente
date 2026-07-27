@@ -16,6 +16,9 @@ export const paginas = [
   "porQue",
   "preguntas",
   "contacto",
+  "privacidad",
+  "terminos",
+  "datos",
 ] as const;
 
 export type Pagina = (typeof paginas)[number];
@@ -28,6 +31,21 @@ const direcciones: Record<Pagina, Record<Locale, string>> = {
   porQue: { es: "por-que-nosotros", en: "why-us", fr: "pourquoi-nous" },
   preguntas: { es: "preguntas-frecuentes", en: "faq", fr: "questions-frequentes" },
   contacto: { es: "contacto", en: "contact", fr: "contact" },
+  privacidad: {
+    es: "legal/privacidad",
+    en: "legal/privacy",
+    fr: "legal/confidentialite",
+  },
+  terminos: {
+    es: "legal/terminos",
+    en: "legal/terms",
+    fr: "legal/conditions",
+  },
+  datos: {
+    es: "legal/tratamiento-de-datos",
+    en: "legal/data-processing",
+    fr: "legal/traitement-des-donnees",
+  },
 };
 
 /** Todas las direcciones que existen, para poder resolverlas al revés. */
@@ -53,13 +71,29 @@ export function direccionDe(pagina: Pagina, locale: Locale): string {
 }
 
 /**
- * Ruta lista para usar en un enlace, con la barra final y la subcarpeta
- * de despliegue si la hay.
- * @example ruta("precios", "fr")  ->  /micliente/fr/tarifs/
+ * Ruta para usar con el componente <Link> de Next.
+ *
+ * IMPORTANTE: va SIN la subcarpeta de despliegue. Next la añade solo
+ * a los <Link>, así que ponerla aquí la duplicaría y produciría
+ * direcciones inexistentes como /micliente/micliente/es/precios/.
+ *
+ * @example ruta("precios", "fr")  ->  /fr/tarifs/
  */
 export function ruta(pagina: Pagina, locale: Locale): string {
   const dir = direcciones[pagina][locale];
-  return dir ? `${BASE_PATH}/${locale}/${dir}/` : `${BASE_PATH}/${locale}/`;
+  return dir ? `/${locale}/${dir}/` : `/${locale}/`;
+}
+
+/**
+ * Ruta para una etiqueta <a> normal.
+ *
+ * A diferencia de <Link>, un ancla corriente NO recibe la subcarpeta
+ * automáticamente, así que aquí sí hay que ponerla.
+ *
+ * @example rutaConBase("precios", "fr")  ->  /micliente/fr/tarifs/
+ */
+export function rutaConBase(pagina: Pagina, locale: Locale): string {
+  return `${BASE_PATH}${ruta(pagina, locale)}`;
 }
 
 /** URL absoluta, para los canónicos y los datos estructurados. */
@@ -86,23 +120,38 @@ export function alternativasDe(pagina: Pagina): Record<string, string> {
   return mapa;
 }
 
-/** Todas las combinaciones de idioma y dirección, para el build estático. */
-export function todasLasRutas(): { lang: Locale; pagina: string }[] {
-  const salida: { lang: Locale; pagina: string }[] = [];
+/**
+ * Todas las combinaciones de idioma y dirección, para el build estático.
+ *
+ * La dirección va troceada por barras porque la ruta es comodín: las
+ * páginas legales viven bajo `legal/`, con dos segmentos.
+ */
+export function todasLasRutas(): { lang: Locale; pagina: string[] }[] {
+  const salida: { lang: Locale; pagina: string[] }[] = [];
   for (const locale of locales) {
     for (const pagina of paginas) {
       const dir = direcciones[pagina][locale];
-      if (dir) salida.push({ lang: locale, pagina: dir });
+      if (dir) salida.push({ lang: locale, pagina: dir.split("/") });
     }
   }
   return salida;
 }
 
-/** Las páginas que aparecen en el menú, en orden. */
-export const menuPrincipal: Pagina[] = [
+/** Las páginas legales que aparecen en el pie. */
+export const paginasLegales: Pagina[] = ["privacidad", "terminos", "datos"];
+
+/**
+ * Las páginas que aparecen en el menú, en orden.
+ *
+ * Se declara `as const` a propósito: así TypeScript sabe que solo
+ * contiene estas cinco claves, que son justamente las que existen en
+ * `nav`. Si se tipara como `Pagina[]`, incluiría las legales y el
+ * acceso a `c.nav[pagina]` no compilaría.
+ */
+export const menuPrincipal = [
   "servicios",
   "precios",
   "porQue",
   "preguntas",
   "contacto",
-];
+] as const;

@@ -35,9 +35,9 @@ export function PieDePagina({
     {
       titulo: c.footer.legal,
       enlaces: [
-        { texto: e.privacidad, href: `/${locale}/legal/privacidad/` },
-        { texto: e.terminos, href: `/${locale}/legal/terminos/` },
-        { texto: e.datos, href: `/${locale}/legal/datos/` },
+        { texto: e.privacidad, href: ruta("privacidad", locale) },
+        { texto: e.terminos, href: ruta("terminos", locale) },
+        { texto: e.datos, href: ruta("datos", locale) },
       ],
     },
   ];

@@ -76,6 +76,155 @@ export const es = {
       descripcion:
         "Agenda treinta minutos con nosotros o escríbenos. Sin presentación comercial y sin compromiso.",
     },
+    privacidad: {
+      titulo: "Política de privacidad",
+      descripcion:
+        "Qué datos recogemos, para qué los usamos y qué derechos tienes sobre ellos.",
+    },
+    terminos: {
+      titulo: "Términos y condiciones",
+      descripcion:
+        "Condiciones de uso del sitio y de la contratación de los servicios de Micliente.",
+    },
+    datos: {
+      titulo: "Tratamiento de datos personales",
+      descripcion:
+        "Política de tratamiento conforme a la Ley 1581 de 2012 y derechos del titular de los datos.",
+    },
+  },
+
+  /**
+   * Textos legales.
+   *
+   * Redactados a partir de lo que exigen la Ley 1581 de 2012 (datos
+   * personales) y la Ley 1480 de 2011 (comercio electrónico).
+   * Los datos de la empresa están pendientes de completar.
+   */
+  legal: {
+    avisoBorrador:
+      "Documento en preparación. Debe revisarlo un abogado y completarse con los datos de la empresa antes de operar comercialmente.",
+    actualizado: "Última actualización",
+    fecha: "julio de 2026",
+    identificacion: {
+      titulo: "Quiénes somos",
+      razonSocial: "Razón social",
+      razonSocialValor: "Micliente S.A.S. (en constitución)",
+      nit: "NIT",
+      nitValor: "Pendiente de asignación",
+      domicilio: "Domicilio",
+      domicilioValor: "Colombia",
+      correo: "Correo de contacto",
+      correoValor: "hola@micliente.co",
+    },
+    sic: {
+      texto:
+        "Puedes presentar reclamos ante la Superintendencia de Industria y Comercio, autoridad colombiana de protección al consumidor y de datos personales.",
+      enlace: "Ir a la Superintendencia de Industria y Comercio",
+    },
+    privacidad: {
+      secciones: [
+        {
+          t: "Qué datos recogemos",
+          p: "Solo los que nos entregas voluntariamente en el formulario de contacto: nombre, empresa, correo electrónico, teléfono y el mensaje que escribes. Nada más.",
+        },
+        {
+          t: "Para qué los usamos",
+          p: "Únicamente para responderte y, si decides contratarnos, para prestarte el servicio. No los usamos para ninguna otra finalidad.",
+        },
+        {
+          t: "Qué NO hacemos con ellos",
+          p: "No los vendemos. No los cedemos a terceros con fines comerciales. No los usamos para publicidad de otras empresas.",
+        },
+        {
+          t: "Cookies y seguimiento",
+          p: "Este sitio no usa cookies de seguimiento ni herramientas de analítica de terceros. No hay perfilado publicitario ni recolección silenciosa de datos.",
+        },
+        {
+          t: "Cuánto tiempo los conservamos",
+          p: "Mientras exista una relación comercial y durante los plazos que exija la ley. Puedes pedir su eliminación en cualquier momento.",
+        },
+        {
+          t: "Tus derechos",
+          p: "Puedes conocer, actualizar, rectificar y suprimir tus datos, y revocar la autorización que nos diste. Basta con escribirnos a hola@micliente.co y responderemos dentro de los plazos legales.",
+        },
+      ],
+    },
+    terminos: {
+      secciones: [
+        {
+          t: "Objeto",
+          p: "Estas condiciones regulan el uso de este sitio y la contratación de los servicios de automatización de WhatsApp y desarrollo web que ofrece Micliente.",
+        },
+        {
+          t: "Los servicios se contratan por escrito",
+          p: "La información de este sitio es orientativa y no constituye una oferta vinculante. El alcance, el precio y las condiciones de cada proyecto se fijan en un contrato firmado por ambas partes.",
+        },
+        {
+          t: "Precios",
+          p: "Los precios publicados son de referencia, están en pesos colombianos y no incluyen impuestos salvo que se indique. El costo de mensajería de Meta se factura aparte y al costo, sin recargo nuestro.",
+        },
+        {
+          t: "Dependencia de servicios de terceros",
+          p: "Los servicios se apoyan en plataformas ajenas, principalmente la WhatsApp Business Platform de Meta. Los cambios de precio, de políticas, las suspensiones de cuenta o las caídas de esas plataformas escapan a nuestro control y no nos son imputables.",
+        },
+        {
+          t: "Uso de inteligencia artificial",
+          p: "Los asistentes que implementamos usan modelos de inteligencia artificial y pueden equivocarse. Por eso siempre se configura el paso a una persona. El cliente es responsable de revisar la información crítica antes de comprometerse con sus propios clientes.",
+        },
+        {
+          t: "Propiedad intelectual",
+          p: "Los contenidos de este sitio pertenecen a Micliente. La titularidad del trabajo entregado a cada cliente se define en su contrato.",
+        },
+        {
+          t: "Derecho de retracto",
+          p: "En las contrataciones a distancia se aplica el derecho de retracto en los términos del artículo 47 de la Ley 1480 de 2011.",
+        },
+        {
+          t: "Ley aplicable",
+          p: "Estas condiciones se rigen por la ley colombiana. Las controversias se someten a los jueces competentes de Colombia.",
+        },
+      ],
+    },
+    datos: {
+      secciones: [
+        {
+          t: "Marco legal",
+          p: "Esta política se expide conforme a la Ley 1581 de 2012, al Decreto 1377 de 2013 y demás normas colombianas sobre protección de datos personales.",
+        },
+        {
+          t: "Responsable del tratamiento",
+          p: "Micliente S.A.S. es responsable del tratamiento de los datos que recibe a través de este sitio. Puedes contactarnos en hola@micliente.co.",
+        },
+        {
+          t: "Cuando operamos el WhatsApp de un cliente",
+          p: "En esos casos la empresa cliente es la Responsable del Tratamiento de los datos de sus propios clientes, y Micliente actúa como Encargado del Tratamiento. Esa relación, sus finalidades y sus límites quedan por escrito en el contrato de servicio.",
+        },
+        {
+          t: "Finalidades",
+          p: "Atender solicitudes de información, elaborar propuestas comerciales, prestar los servicios contratados, facturar y cumplir obligaciones legales.",
+        },
+        {
+          t: "Autorización",
+          p: "Al enviarnos el formulario autorizas de forma previa, expresa e informada el tratamiento de tus datos para las finalidades descritas. Puedes revocar esa autorización cuando quieras.",
+        },
+        {
+          t: "Derechos del titular",
+          p: "Conocer, actualizar y rectificar tus datos; solicitar prueba de la autorización; ser informado sobre el uso que se les ha dado; presentar quejas ante la Superintendencia de Industria y Comercio; revocar la autorización y solicitar la supresión cuando proceda.",
+        },
+        {
+          t: "Cómo ejercerlos",
+          p: "Escribiendo a hola@micliente.co. Las consultas se atienden en un máximo de diez días hábiles y los reclamos en quince, según los plazos de la Ley 1581.",
+        },
+        {
+          t: "Seguridad",
+          p: "Aplicamos medidas administrativas, técnicas y legales razonables para proteger los datos frente a pérdida, acceso no autorizado, alteración o uso fraudulento.",
+        },
+        {
+          t: "Transferencia internacional",
+          p: "Algunos proveedores tecnológicos que utilizamos, como los de inteligencia artificial y alojamiento, operan fuera de Colombia. Al autorizar el tratamiento aceptas esa transferencia internacional, que se realiza con proveedores que ofrecen niveles adecuados de protección.",
+        },
+      ],
+    },
   },
 
   hero: {

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { locales, localeNames, localeShortNames, type Locale } from "@/lib/i18n";
-import { paginaDesdeDireccion, ruta } from "@/lib/rutas";
+import { paginaDesdeDireccion, rutaConBase } from "@/lib/rutas";
 import s from "./Controles.module.css";
 
 /**
@@ -83,8 +83,11 @@ export function SelectorIdioma({
         <ul className={s.menu} role="menu">
           {locales.map((l) => (
             <li key={l} role="none">
+              {/* Ancla normal y no <Link>: cambiar de idioma debe
+                  recargar del todo, para que el HTML llegue ya en el
+                  idioma correcto. Por eso lleva la subcarpeta. */}
               <a
-                href={ruta(paginaActual, l)}
+                href={rutaConBase(paginaActual, l)}
                 role="menuitem"
                 className={`${s.opcion} ${l === locale ? s.opcionActiva : ""}`}
                 lang={l}

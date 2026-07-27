@@ -1,0 +1,121 @@
+/* ============================================================
+   Documento legal
+   Medida de línea corta: un texto legal se lee mal a todo el ancho.
+   ============================================================ */
+
+.caja {
+  max-width: 46rem;
+}
+
+.aviso {
+  padding: var(--e-4);
+  border-inline-start: 3px solid var(--alerta);
+  background: color-mix(in srgb, var(--alerta) 8%, transparent);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--t-sm);
+  color: var(--texto);
+  margin-bottom: var(--e-5);
+}
+
+.fecha {
+  font-size: var(--t-xs);
+  color: var(--texto-tenue);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  margin-bottom: var(--e-6);
+}
+
+/* ---------- Identificación de la empresa ---------- */
+
+.identificacion {
+  padding: var(--e-5);
+  background: var(--fondo-elevado);
+  border: 1px solid var(--borde);
+  border-radius: var(--r-lg);
+  margin-bottom: var(--e-7);
+}
+
+.tituloIdent {
+  font-size: var(--t-xs);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-bottom: var(--e-4);
+}
+
+.datos {
+  display: grid;
+  gap: var(--e-3) var(--e-5);
+  grid-template-columns: 1fr;
+}
+
+.datos dt {
+  font-size: var(--t-xs);
+  color: var(--texto-tenue);
+  margin-bottom: 0.15rem;
+}
+
+.datos dd {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--texto);
+}
+
+.datos a {
+  color: var(--acento);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 34rem) {
+  .datos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Cuerpo del documento ---------- */
+
+.cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-6);
+}
+
+.seccion {
+  scroll-margin-top: 6rem;
+}
+
+.titulo {
+  font-size: var(--t-md);
+  margin-bottom: var(--e-2);
+  color: var(--texto);
+}
+
+.parrafo {
+  color: var(--texto-suave);
+  font-size: var(--t-base);
+}
+
+/* ---------- Enlace a la Superintendencia ---------- */
+
+.sic {
+  margin-top: var(--e-8);
+  padding-top: var(--e-5);
+  border-top: 1px solid var(--borde);
+  font-size: var(--t-sm);
+  color: var(--texto-suave);
+}
+
+.enlaceSic {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  margin-top: var(--e-2);
+  color: var(--acento);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.enlaceSic:hover {
+  color: var(--acento-fuerte);
+}

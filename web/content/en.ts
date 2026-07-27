@@ -71,6 +71,155 @@ export const en = {
       descripcion:
         "Book a thirty-minute conversation or send us a message. No sales pitch, no obligation—just an honest look at what your business needs.",
     },
+    privacidad: {
+      titulo: "Privacy policy",
+      descripcion:
+        "Learn what personal data we collect, why we use it, how long we retain it, and how you can exercise your rights under Colombian law.",
+    },
+    terminos: {
+      titulo: "Terms and conditions",
+      descripcion:
+        "Review the terms governing use of this website and the engagement of Micliente's WhatsApp automation and web development services.",
+    },
+    datos: {
+      titulo: "Personal data processing",
+      descripcion:
+        "Read our personal data processing policy under Colombian Law 1581 of 2012, including your rights and how to exercise them.",
+    },
+  },
+
+  /**
+   * Legal texts.
+   *
+   * Drafted in accordance with Colombian Law 1581 of 2012 (personal
+   * data) and Colombian Law 1480 of 2011 (e-commerce).
+   * The company information remains to be completed.
+   */
+  legal: {
+    avisoBorrador:
+      "Draft document. It must be reviewed by a lawyer and completed with the company's information before commercial operations begin.",
+    actualizado: "Last updated",
+    fecha: "July 2026",
+    identificacion: {
+      titulo: "Company information",
+      razonSocial: "Legal name",
+      razonSocialValor: "Micliente S.A.S. (being incorporated)",
+      nit: "NIT",
+      nitValor: "Pending assignment",
+      domicilio: "Registered office",
+      domicilioValor: "Colombia",
+      correo: "Contact email",
+      correoValor: "hola@micliente.co",
+    },
+    sic: {
+      texto:
+        "You may file complaints with the Superintendencia de Industria y Comercio (Colombia's consumer protection and data authority).",
+      enlace: "Go to the Superintendencia de Industria y Comercio",
+    },
+    privacidad: {
+      secciones: [
+        {
+          t: "Data we collect",
+          p: "We collect only the data you voluntarily provide through the contact form: your name, company, email address, telephone number, and the message you submit. We collect no other data.",
+        },
+        {
+          t: "How we use it",
+          p: "We use it solely to respond to your inquiry and, if you engage us, to provide the contracted service. We do not process it for any other purpose.",
+        },
+        {
+          t: "What we do NOT do with it",
+          p: "We do not sell it. We do not disclose it to third parties for commercial purposes. We do not use it to advertise other companies.",
+        },
+        {
+          t: "Cookies and tracking",
+          p: "This website does not use tracking cookies or third-party analytics tools. It does not conduct advertising profiling or covertly collect data.",
+        },
+        {
+          t: "How long we retain it",
+          p: "We retain it for the duration of the commercial relationship and for any period required by law. You may request its deletion at any time.",
+        },
+        {
+          t: "Your rights",
+          p: "You may access, update, correct, and delete your data, and withdraw the consent you granted us. To do so, email hola@micliente.co. We will respond within the statutory time limits.",
+        },
+      ],
+    },
+    terminos: {
+      secciones: [
+        {
+          t: "Purpose",
+          p: "These terms govern the use of this website and the engagement of the WhatsApp automation and web development services offered by Micliente.",
+        },
+        {
+          t: "Services are contracted in writing",
+          p: "The information on this website is for guidance only and does not constitute a binding offer. The scope, price, and terms of each project are set out in an agreement signed by both parties.",
+        },
+        {
+          t: "Prices",
+          p: "Published prices are indicative, denominated in Colombian pesos, and exclude taxes unless otherwise stated. Meta messaging charges are billed separately at cost, with no markup from us.",
+        },
+        {
+          t: "Reliance on third-party services",
+          p: "The services rely on third-party platforms, primarily Meta's WhatsApp Business Platform. Changes to pricing or policies, account suspensions, or outages affecting those platforms are beyond our control and are not attributable to us.",
+        },
+        {
+          t: "Use of artificial intelligence",
+          p: "The assistants we implement use artificial intelligence models and may make errors. Human handoff is therefore always configured. The client is responsible for reviewing critical information before making commitments to its own customers.",
+        },
+        {
+          t: "Intellectual property",
+          p: "The content of this website belongs to Micliente. Ownership of the work delivered to each client is defined in the applicable agreement.",
+        },
+        {
+          t: "Right of withdrawal",
+          p: "For distance contracts, the right of withdrawal applies in accordance with Article 47 of Colombian Law 1480 of 2011.",
+        },
+        {
+          t: "Governing law",
+          p: "These terms are governed by Colombian law. Any dispute shall be submitted to the competent courts of Colombia.",
+        },
+      ],
+    },
+    datos: {
+      secciones: [
+        {
+          t: "Legal framework",
+          p: "This policy is issued pursuant to Colombian Law 1581 of 2012, Decree 1377 of 2013, and all other Colombian rules governing personal data protection.",
+        },
+        {
+          t: "Data Controller",
+          p: "Micliente S.A.S. is the Data Controller for personal data it receives through this website. You may contact us at hola@micliente.co.",
+        },
+        {
+          t: "When we operate a client's WhatsApp",
+          p: "In such cases, the client company is the Data Controller for its own customers' personal data, and Micliente acts as the Data Processor. That relationship, its purposes, and its limits are set out in writing in the service agreement.",
+        },
+        {
+          t: "Purposes",
+          p: "To respond to requests for information, prepare commercial proposals, provide the contracted services, issue invoices, and comply with legal obligations.",
+        },
+        {
+          t: "Consent",
+          p: "By submitting the form, you give prior, express, and informed consent to the processing of your data for the purposes described. You may withdraw that consent at any time.",
+        },
+        {
+          t: "Data subject rights",
+          p: "You may access, update, and correct your data; request proof of consent; be informed of how it has been used; file complaints with the Superintendencia de Industria y Comercio; withdraw consent; and request deletion where applicable.",
+        },
+        {
+          t: "How to exercise your rights",
+          p: "Email hola@micliente.co. Inquiries are answered within a maximum of ten business days and complaints within fifteen business days, in accordance with the time limits under Colombian Law 1581.",
+        },
+        {
+          t: "Security",
+          p: "We apply reasonable administrative, technical, and legal safeguards to protect data against loss, unauthorized access, alteration, or fraudulent use.",
+        },
+        {
+          t: "International transfer",
+          p: "Some of the technology providers we use, including artificial intelligence and hosting providers, operate outside Colombia. By consenting to processing, you accept this international transfer, which is made to providers that offer adequate levels of protection.",
+        },
+      ],
+    },
   },
 
   hero: {
