@@ -32,7 +32,10 @@ export async function generateMetadata({
   const c = obtenerContenido(locale);
 
   return {
-    title: c.meta.titulo,
+    // `absolute` evita que se aplique la plantilla "%s · Micliente" del
+    // layout raíz. El título del contenido ya incluye la marca, así que
+    // sin esto salía duplicada: "Micliente · … · Micliente".
+    title: { absolute: c.meta.titulo },
     description: c.meta.descripcion,
     keywords: c.meta.palabrasClave,
     alternates: {

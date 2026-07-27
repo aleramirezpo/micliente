@@ -67,10 +67,30 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <head>
         {/*
+          Seguridad en alojamientos que no permiten configurar cabeceras
+          HTTP, como GitHub Pages.
+
+          Lo ideal es enviar estas políticas como cabeceras de respuesta
+          (así se hace en Cloudflare, mediante public/_headers). Pero
+          GitHub Pages ignora ese archivo, así que aquí se declaran en
+          etiquetas meta, que es lo único que el navegador acepta sin
+          control del servidor.
+
+          Limitación conocida: en meta NO funcionan `frame-ancestors`
+          (equivalente a X-Frame-Options) ni `Permissions-Policy`. Esas
+          solo se pueden aplicar por cabecera real, y se activarán al
+          desplegar en Cloudflare con el dominio propio.
+        */}
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+        {/*
           Aplica el tema guardado antes del primer pintado, para evitar
           el destello blanco al cargar en modo oscuro. Es el único script
-          en línea del sitio; su hash va declarado en la CSP de
-          public/_headers.
+          en línea del sitio.
         */}
         <script
           dangerouslySetInnerHTML={{

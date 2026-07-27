@@ -31,9 +31,12 @@
   --fondo-inverso: var(--grafito);
   --texto: var(--grafito);
   --texto-suave: #545b65;
-  --texto-tenue: #838a94;
+  /* Oscurecidos hasta alcanzar 4,5:1 sobre el fondo claro, que es el
+     mínimo que exige la accesibilidad para texto normal. Los valores
+     anteriores se veían elegantes pero eran ilegibles para mucha gente. */
+  --texto-tenue: #656c76;
   --texto-inverso: var(--marfil);
-  --acento: var(--oro-oscuro);
+  --acento: #7e6330;
   --acento-fuerte: var(--oro);
   --borde: #e6e0d3;
   --borde-fuerte: #cec8ba;

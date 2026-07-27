@@ -145,10 +145,28 @@ a {
 }
 
 /* Solo para los dos momentos de mayor impacto emocional de la página.
-   Usado con moderación, el contraste funciona; abusar de él cansa. */
+   Usado con moderación, el contraste funciona; abusar de él cansa.
+
+   Importante: además del fondo hay que reasignar los colores de texto.
+   Si no, los tonos pensados para fondo claro quedan ilegibles sobre
+   el grafito: el dorado bajaba a 2,4:1 y el rojo a 2,1:1, cuando el
+   mínimo accesible es 4,5:1. */
 .seccion--oscura {
   background: var(--grafito);
   color: var(--marfil);
+
+  --texto: var(--marfil);
+  --texto-suave: #b8bec7;
+  --texto-tenue: #9aa2ac;
+  --texto-inverso: var(--grafito);
+  --acento: var(--oro-claro);
+  --acento-fuerte: var(--oro-claro);
+  --borde: var(--grafito-borde);
+  --borde-fuerte: #4a515b;
+  --fondo-elevado: var(--grafito-suave);
+  --error: #ed9b99;
+  --exito: #8fd0ac;
+  --alerta: #e8c17d;
 }
 
 .seccion--elevada {
