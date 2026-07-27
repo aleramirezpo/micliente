@@ -93,7 +93,7 @@ function ConversacionAnimada({
   const total = conversacion.mensajes.length;
   const [visibles, setVisibles] = useState(1);
   const [escribiendo, setEscribiendo] = useState(false);
-  const finDeLista = useRef<HTMLDivElement>(null);
+  const lista = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
     const temporizadores: ReturnType<typeof setTimeout>[] = [];
@@ -123,10 +123,16 @@ function ConversacionAnimada({
     return () => temporizadores.forEach(clearTimeout);
   }, [conversacion, total, alTerminar]);
 
-  // Mantiene a la vista el último mensaje. `block: "nearest"` asegura
-  // que solo se desplace el contenedor del chat, nunca la página.
+  // Mantiene a la vista el último mensaje.
+  //
+  // Se ajusta `scrollTop` directamente sobre la lista, y NO se usa
+  // `scrollIntoView`. Ese método no se limita al contenedor: sube por
+  // la jerarquía y desplaza también la ventana. En un móvil eso hacía
+  // que la página se fuera sola hacia abajo unos 270 px en los dos
+  // primeros segundos, arrastrando al visitante fuera de la cabecera.
   useEffect(() => {
-    finDeLista.current?.scrollIntoView({ block: "nearest" });
+    const el = lista.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [visibles, escribiendo]);
 
   return (
@@ -143,7 +149,12 @@ function ConversacionAnimada({
 
       {/* aria-live anuncia los mensajes nuevos sin interrumpir la
           lectura en curso. */}
-      <ol className={s.mensajes} aria-live="polite" aria-atomic="false">
+      <ol
+        ref={lista}
+        className={s.mensajes}
+        aria-live="polite"
+        aria-atomic="false"
+      >
         {conversacion.mensajes.slice(0, visibles).map((m, i) => (
           <li
             key={i}
@@ -163,7 +174,6 @@ function ConversacionAnimada({
             </p>
           </li>
         )}
-        <div ref={finDeLista} />
       </ol>
     </div>
   );
