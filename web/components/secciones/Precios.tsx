@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
+import { ruta } from "@/lib/rutas";
 import s from "./Precios.module.css";
 
 function MarcaVerificacion() {
@@ -65,7 +66,7 @@ export function Precios({
                 ))}
               </ul>
               <Link
-                href={`/${locale}/#contacto`}
+                href={ruta("contacto", locale)}
                 className={`boton ${
                   plan.destacado ? "boton--primario" : "boton--secundario"
                 } ${s.cta}`}

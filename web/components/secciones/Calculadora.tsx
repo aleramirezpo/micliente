@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
+import { ruta } from "@/lib/rutas";
 import s from "./Calculadora.module.css";
 
 const etiquetasLocale: Record<Locale, string> = {
@@ -141,7 +142,7 @@ export function Calculadora({
             </dl>
             <p className={s.nota}>{calculadora.nota}</p>
             <Link
-              href={`/${locale}/#contacto`}
+              href={ruta("contacto", locale)}
               className="boton boton--primario"
             >
               {calculadora.cta}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
+import { ruta } from "@/lib/rutas";
 import { ChatDemo } from "./ChatDemo";
 import s from "./Hero.module.css";
 
@@ -26,13 +27,13 @@ export function Hero({ locale, c }: { locale: Locale; c: Contenido }) {
 
           <div className="grupo-botones">
             <Link
-              href={`/${locale}/#servicios`}
+              href={ruta("servicios", locale)}
               className="boton boton--primario"
             >
               {h.ctaPrimario}
             </Link>
             <Link
-              href={`/${locale}/#contacto`}
+              href={ruta("precios", locale)}
               className="boton boton--secundario"
             >
               {h.ctaSecundario}

@@ -1,5 +1,3 @@
-import Link from "next/link";
-import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
 import s from "./Agendar.module.css";
 
@@ -20,13 +18,9 @@ function MarcaVerificacion() {
   );
 }
 
-export function Agendar({
-  locale,
-  c,
-}: {
-  locale: Locale;
-  c: Contenido;
-}) {
+// Ya no necesita el idioma: sus dos botones apuntan a anclas de la
+// propia página.
+export function Agendar({ c }: { c: Contenido }) {
   const agendar = c.agendar;
 
   return (
@@ -47,18 +41,16 @@ export function Agendar({
           </ul>
 
           <div className="grupo-botones">
-            <Link
-              href={`/${locale}/#calendario`}
-              className="boton boton--primario"
-            >
+            {/* Anclas relativas: esta sección y el formulario viven en
+                la misma página, así que basta con el destino local.
+                Con una ruta absoluta se recargaría la página entera
+                para acabar en el mismo sitio. */}
+            <a href="#calendario" className="boton boton--primario">
               {agendar.ctaCalendario}
-            </Link>
-            <Link
-              href={`/${locale}/#contacto`}
-              className="boton boton--secundario"
-            >
+            </a>
+            <a href="#contacto" className="boton boton--secundario">
               {agendar.ctaWhatsapp}
-            </Link>
+            </a>
           </div>
         </div>
 

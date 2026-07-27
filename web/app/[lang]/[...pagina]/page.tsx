@@ -135,7 +135,7 @@ export default async function PaginaInterna({
 
       {pagina === "contacto" && (
         <>
-          <Agendar locale={locale} c={c} />
+          <Agendar c={c} />
           <Contacto c={c} />
         </>
       )}

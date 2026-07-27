@@ -1,6 +1,7 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
+import { ruta } from "@/lib/rutas";
 import s from "./CtaFinal.module.css";
 
 export function CtaFinal({
@@ -19,13 +20,13 @@ export function CtaFinal({
         <p className={s.texto}>{cta.texto}</p>
         <div className={`grupo-botones ${s.botones}`}>
           <Link
-            href={`/${locale}/#agendar`}
+            href={ruta("contacto", locale)}
             className="boton boton--primario"
           >
             {cta.ctaPrimario}
           </Link>
           <Link
-            href={`/${locale}/#contacto`}
+            href={ruta("contacto", locale)}
             className="boton boton--claro"
           >
             {cta.ctaSecundario}
