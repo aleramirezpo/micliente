@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Logo } from "./Logo";
-import { ruta } from "@/lib/rutas";
+import { EnlacePagina } from "./EnlacePagina";
+import type { Pagina } from "@/lib/rutas";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
 import s from "./PieDePagina.module.css";
@@ -15,29 +15,29 @@ export function PieDePagina({
   const anio = new Date().getFullYear();
   const e = c.footer.enlaces;
 
-  const columnas = [
+  const columnas: { titulo: string; enlaces: { texto: string; pagina: Pagina }[] }[] = [
     {
       titulo: c.footer.servicios,
       enlaces: [
-        { texto: e.whatsappIa, href: ruta("servicios", locale) },
-        { texto: e.webCatalogo, href: ruta("servicios", locale) },
-        { texto: e.precios, href: ruta("precios", locale) },
+        { texto: e.whatsappIa, pagina: "servicios" },
+        { texto: e.webCatalogo, pagina: "servicios" },
+        { texto: e.precios, pagina: "precios" },
       ],
     },
     {
       titulo: c.footer.empresa,
       enlaces: [
-        { texto: c.nav.porQue, href: ruta("porQue", locale) },
-        { texto: e.preguntas, href: ruta("preguntas", locale) },
-        { texto: e.contacto, href: ruta("contacto", locale) },
+        { texto: c.nav.porQue, pagina: "porQue" },
+        { texto: e.preguntas, pagina: "preguntas" },
+        { texto: e.contacto, pagina: "contacto" },
       ],
     },
     {
       titulo: c.footer.legal,
       enlaces: [
-        { texto: e.privacidad, href: ruta("privacidad", locale) },
-        { texto: e.terminos, href: ruta("terminos", locale) },
-        { texto: e.datos, href: ruta("datos", locale) },
+        { texto: e.privacidad, pagina: "privacidad" },
+        { texto: e.terminos, pagina: "terminos" },
+        { texto: e.datos, pagina: "datos" },
       ],
     },
   ];
@@ -47,9 +47,13 @@ export function PieDePagina({
       <div className="contenedor">
         <div className={s.superior}>
           <div className={s.marca}>
-            <Link href={ruta("inicio", locale)} aria-label={`Micliente — ${c.nav.inicio}`}>
+            <EnlacePagina
+              pagina="inicio"
+              locale={locale}
+              aria-label={`Micliente — ${c.nav.inicio}`}
+            >
               <Logo variante="completo" alto={52} />
-            </Link>
+            </EnlacePagina>
             <p className={s.descripcion}>{c.footer.descripcion}</p>
           </div>
 
@@ -59,9 +63,13 @@ export function PieDePagina({
               <ul className={s.listaEnlaces}>
                 {col.enlaces.map((enlace) => (
                   <li key={enlace.texto}>
-                    <Link href={enlace.href} className={s.enlace}>
+                    <EnlacePagina
+                      pagina={enlace.pagina}
+                      locale={locale}
+                      className={s.enlace}
+                    >
                       {enlace.texto}
-                    </Link>
+                    </EnlacePagina>
                   </li>
                 ))}
               </ul>

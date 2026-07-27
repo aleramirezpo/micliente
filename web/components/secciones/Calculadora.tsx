@@ -1,10 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
-import { ruta } from "@/lib/rutas";
+import { EnlacePagina } from "../EnlacePagina";
 import s from "./Calculadora.module.css";
 
 const etiquetasLocale: Record<Locale, string> = {
@@ -141,12 +140,11 @@ export function Calculadora({
               </div>
             </dl>
             <p className={s.nota}>{calculadora.nota}</p>
-            <Link
-              href={ruta("contacto", locale)}
+            <EnlacePagina pagina="contacto" locale={locale}
               className="boton boton--primario"
             >
               {calculadora.cta}
-            </Link>
+            </EnlacePagina>
           </aside>
         </div>
       </div>

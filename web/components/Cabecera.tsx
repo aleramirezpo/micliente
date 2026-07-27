@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
-import { menuPrincipal, ruta, direccionDe } from "@/lib/rutas";
+import { EnlacePagina } from "./EnlacePagina";
+import { menuPrincipal, direccionDe } from "@/lib/rutas";
 import { SelectorIdioma } from "./SelectorIdioma";
 import { BotonTema } from "./BotonTema";
 import type { Locale } from "@/lib/i18n";
@@ -43,7 +43,6 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
   // Cada entrada del menú es una página propia, con su URL.
   const enlaces = menuPrincipal.map((pagina) => ({
     pagina,
-    href: ruta(pagina, locale),
     texto: c.nav[pagina],
     // Se compara solo la última parte de la ruta para que funcione
     // igual con o sin la subcarpeta de despliegue.
@@ -55,11 +54,11 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
       className={`${s.cabecera} ${desplazado ? s.solida : ""} no-imprimir`}
     >
       <div className={`contenedor ${s.barra}`}>
-        <Link
-          href={ruta("inicio", locale)}
+        <EnlacePagina
+          pagina="inicio"
+          locale={locale}
           className={s.marca}
           aria-label={`Micliente — ${c.nav.inicio}`}
-          onClick={() => setAbierto(false)}
         >
           {/*
             Dos versiones del logo que se alternan por ancho.
@@ -69,31 +68,33 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
           */}
           <Logo variante="isotipo" alto={28} className={s.logoCompacto} />
           <Logo variante="simple" alto={26} className={s.logoCompleto} />
-        </Link>
+        </EnlacePagina>
 
         {/* Navegación de escritorio */}
         <nav className={s.navEscritorio} aria-label={c.nav.menu}>
           {enlaces.map((e) => (
-            <Link
+            <EnlacePagina
               key={e.pagina}
-              href={e.href}
+              pagina={e.pagina}
+              locale={locale}
               className={`${s.enlace} ${e.activo ? s.enlaceActivo : ""}`}
               aria-current={e.activo ? "page" : undefined}
             >
               {e.texto}
-            </Link>
+            </EnlacePagina>
           ))}
         </nav>
 
         <div className={s.acciones}>
           <SelectorIdioma locale={locale} etiqueta={c.nav.idioma} />
           <BotonTema etiqueta={c.nav.tema} />
-          <Link
-            href={ruta("contacto", locale)}
+          <EnlacePagina
+            pagina="contacto"
+            locale={locale}
             className={`boton boton--primario ${s.ctaEscritorio}`}
           >
             {c.nav.agendar}
-          </Link>
+          </EnlacePagina>
 
           {/* Botón hamburguesa: solo en móvil y tablet vertical */}
           <button
@@ -117,32 +118,38 @@ export function Cabecera({ locale, c }: { locale: Locale; c: Contenido }) {
         className={`${s.menuMovil} ${abierto ? s.menuAbierto : ""}`}
         hidden={!abierto}
       >
+        {/*
+          Sin onClick que cierre el menú.
+          Al ser anclas normales, el navegador se lleva la página
+          entera: cerrar el menú antes solo servía para que el
+          elemento pulsado desapareciera a mitad del clic.
+        */}
         <nav className={s.navMovil} aria-label={c.nav.menu}>
-          <Link
-            href={ruta("inicio", locale)}
+          <EnlacePagina
+            pagina="inicio"
+            locale={locale}
             className={s.enlaceMovil}
-            onClick={() => setAbierto(false)}
           >
             {c.nav.inicio}
-          </Link>
+          </EnlacePagina>
           {enlaces.map((e) => (
-            <Link
+            <EnlacePagina
               key={e.pagina}
-              href={e.href}
+              pagina={e.pagina}
+              locale={locale}
               className={`${s.enlaceMovil} ${e.activo ? s.enlaceMovilActivo : ""}`}
               aria-current={e.activo ? "page" : undefined}
-              onClick={() => setAbierto(false)}
             >
               {e.texto}
-            </Link>
+            </EnlacePagina>
           ))}
-          <Link
-            href={ruta("contacto", locale)}
+          <EnlacePagina
+            pagina="contacto"
+            locale={locale}
             className="boton boton--primario"
-            onClick={() => setAbierto(false)}
           >
             {c.nav.agendar}
-          </Link>
+          </EnlacePagina>
         </nav>
       </div>
     </header>

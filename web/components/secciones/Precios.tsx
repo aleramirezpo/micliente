@@ -1,7 +1,6 @@
-import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Contenido } from "@/lib/contenido";
-import { ruta } from "@/lib/rutas";
+import { EnlacePagina } from "../EnlacePagina";
 import s from "./Precios.module.css";
 
 function MarcaVerificacion() {
@@ -65,14 +64,13 @@ export function Precios({
                   </li>
                 ))}
               </ul>
-              <Link
-                href={ruta("contacto", locale)}
+              <EnlacePagina pagina="contacto" locale={locale}
                 className={`boton ${
                   plan.destacado ? "boton--primario" : "boton--secundario"
                 } ${s.cta}`}
               >
                 {plan.cta}
-              </Link>
+              </EnlacePagina>
             </article>
           ))}
         </div>
